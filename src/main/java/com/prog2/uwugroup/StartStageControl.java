@@ -73,6 +73,7 @@ public class StartStageControl implements Initializable {
         alert.show();
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ipField1.textProperty().addListener(new ChangeListener<String>() {
