@@ -12,27 +12,30 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.function.UnaryOperator;
 
+@SuppressWarnings("ALL")
 public class StartStageControl implements Initializable {
     private final int IP_MAX_VALUE = 255;
     private final int IP_MIN_VALUE = 0;
-    private String programTitle = "UWU Gruppe";
+    private final String programTitle = "UWU Gruppe";
     private final Integer[] arrayData = {0,1,2,3};
     private final char[] notAllowed = {};
-    private List<Integer> dialogData;
     private Integer networkPort = 0;
+
     @FXML
     private Label networkLabel = new Label();
     @FXML
     private TextField ipField1 = new TextField();
+    @FXML
+    private TextField ipField2 = new TextField();
+    @FXML
+    private TextField ipField3 = new TextField();
+    @FXML
+    private TextField ipField4 = new TextField();
     public void Quit(ActionEvent event) {
         javafx.application.Platform.exit();
     }
 
-    public void onHelloButtonClick(ActionEvent event) {
-
-    }
 
     public void showIP(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -46,14 +49,14 @@ public class StartStageControl implements Initializable {
         networkLabel.setText(": " + networkPort);
     }
     public void networkHelp(ActionEvent event) {
-        dialogData = Arrays.asList(arrayData);
+        List<Integer> dialogData = Arrays.asList(arrayData);
 
         ChoiceDialog dialog = new ChoiceDialog(dialogData.get(0), dialogData);
         dialog.setTitle(programTitle);
         dialog.setHeaderText("Select your Port");
 
         Optional<Integer> result = dialog.showAndWait();
-        Integer selected = 0;
+        int selected = 0;
 
         if (result.isPresent()) {
 
@@ -87,7 +90,48 @@ public class StartStageControl implements Initializable {
                     } else if (!newValue.isEmpty()) {
                         ipField1.setText(oldValue);
                     }
-                };
+                }
+        });
+        //noinspection DuplicatedCode
+        ipField2.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.matches("\\d+")){
+                    int change = Integer.parseInt(newValue);
+                    if(!(change >= IP_MIN_VALUE && change <= IP_MAX_VALUE)){
+                        ipField2.setText(oldValue);
+                    }
+                } else if (!newValue.isEmpty()) {
+                    ipField2.setText(oldValue);
+                }
+            }
+        });
+        //noinspection DuplicatedCode
+        ipField3.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.matches("\\d+")){
+                    int change = Integer.parseInt(newValue);
+                    if(!(change >= IP_MIN_VALUE && change <= IP_MAX_VALUE)){
+                        ipField3.setText(oldValue);
+                    }
+                } else if (!newValue.isEmpty()) {
+                    ipField3.setText(oldValue);
+                }
+            }
+        });
+        ipField4.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.matches("\\d+")){
+                    int change = Integer.parseInt(newValue);
+                    if(!(change > IP_MIN_VALUE && change < IP_MAX_VALUE)){
+                        ipField4.setText(oldValue);
+                    }
+                } else if (!newValue.isEmpty()) {
+                    ipField4.setText(oldValue);
+                }
+            }
         });
     }
 }
