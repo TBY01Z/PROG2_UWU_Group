@@ -7,7 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import java.net.URL;
+import java.io.IOException;
+import java.net.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +19,7 @@ public class StartStageControl implements Initializable {
     private final int IP_MAX_VALUE = 255;
     private final int IP_MIN_VALUE = 0;
     private final String programTitle = "UWU Gruppe";
-    private final Integer[] arrayData = {0,1,2,3};
+    private final Integer[] arrayData = {880,404,100,25550};
     private final char[] notAllowed = {};
     private Integer networkPort = 0;
 
@@ -41,7 +42,13 @@ public class StartStageControl implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(programTitle);
         alert.setHeaderText("Your IP");
-        String s ="Your IP is: 127.0.0.1 ";
+        String s = null;
+        try{
+            InetAddress ownIP=InetAddress.getLocalHost();
+            s = ownIP.getHostAddress();
+        }catch (Exception e){
+            System.out.println("Exception caught =" + e.getMessage());
+        }
         alert.setContentText(s);
         alert.show();
     }
@@ -69,9 +76,9 @@ public class StartStageControl implements Initializable {
 
     public void about(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Your IP");
-        alert.setHeaderText("Your IP");
-        String s ="Your IP is: 127.0.0.1 ";
+        alert.setTitle(programTitle);
+        alert.setHeaderText("About");
+        String s ="Your IP is: 127.0.0.1 ";//TODO: change about
         alert.setContentText(s);
         alert.show();
     }
@@ -133,5 +140,6 @@ public class StartStageControl implements Initializable {
                 }
             }
         });
+
     }
 }

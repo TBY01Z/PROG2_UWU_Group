@@ -1,0 +1,6 @@
+root {
+    display: block;
+}
+.root {
+    -fx-background-image: url("background.jpg");
+}
