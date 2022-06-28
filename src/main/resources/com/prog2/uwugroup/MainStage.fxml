@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prog2.uwugroup.MainStageController">
+   <children>
+      <Label fx:id="actionLabel" layoutY="6.0" prefHeight="51.0" prefWidth="600.0" />
+      <ProgressBar fx:id="healthBar" layoutX="14.0" layoutY="368.0" prefHeight="18.0" prefWidth="147.0" progress="0.0" />
+   </children>
+</AnchorPane>
