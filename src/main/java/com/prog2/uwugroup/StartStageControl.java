@@ -4,7 +4,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import java.io.IOException;
@@ -51,6 +53,10 @@ public class StartStageControl implements Initializable {
         }
         alert.setContentText(s);
         alert.show();
+    }
+    public void enterTestingGrounds(ActionEvent event) throws IOException{
+        MyIO.loadXML(event, "MainStage.fxml");
+        System.out.println("enterTestingGrounds event triggered.");     //TODO: REMOVE ME!!!
     }
     private void update(){
         networkLabel.setText(": " + networkPort);

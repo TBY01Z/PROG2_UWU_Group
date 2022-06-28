@@ -6,7 +6,33 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prog2.uwugroup.MainStageController">
    <children>
-      <Label fx:id="actionLabel" layoutY="6.0" prefHeight="51.0" prefWidth="600.0" />
       <ProgressBar fx:id="healthBar" layoutX="14.0" layoutY="368.0" prefHeight="18.0" prefWidth="147.0" progress="0.0" />
+      <Button layoutX="36.0" layoutY="32.0" mnemonicParsing="false" onAction="#onPlayerMoveUp" text="nach oben" />
+      <Button layoutX="135.0" layoutY="32.0" mnemonicParsing="false" onAction="#onPlayerMoveDown" text="nach unten" />
+      <Button layoutX="248.0" layoutY="32.0" mnemonicParsing="false" onAction="#onPlayerMoveLeft" text="nach links" />
+      <Button layoutX="365.0" layoutY="32.0" mnemonicParsing="false" onAction="#onPlayerMoveRight" text="nach rechts" />
+      <Button layoutX="56.0" layoutY="106.0" mnemonicParsing="false" onAction="#onPlayerAttack" text="attacke" />
+      <Button layoutX="147.0" layoutY="106.0" mnemonicParsing="false" onAction="#onPlayerTookDamage" text="gegnerische attacke" />
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="606.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onApplicationQuit" text="Beenden" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button layoutX="46.0" layoutY="66.0" mnemonicParsing="false" onAction="#onPlayerHeal" text="heilung" />
+      <Label fx:id="actionLabel" layoutY="257.0" prefHeight="55.0" prefWidth="606.0" />
    </children>
 </AnchorPane>

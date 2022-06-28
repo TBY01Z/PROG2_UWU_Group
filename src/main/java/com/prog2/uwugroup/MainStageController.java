@@ -39,7 +39,7 @@ public class MainStageController implements Initializable {
         actionLabel.setText("Spieler attackiert!");
     }
     public void onPlayerTookDamage(){
-        if(health <= 0.0f){
+        if(health == 0.0f){
             actionLabel.setText("Player ist gestorben!");
         } else{
             hpDecr(0.2f);
@@ -58,7 +58,13 @@ public class MainStageController implements Initializable {
         }
     }
     public float hpIncr(float incrVal){
-        return health + incrVal;
+        if(health < 10 && health < 10 + incrVal){
+            return health + incrVal;
+        } else{
+            return health;
+        }
     }
-
+    public void onApplicationQuit(ActionEvent event){
+        javafx.application.Platform.exit();
+    }
 }
