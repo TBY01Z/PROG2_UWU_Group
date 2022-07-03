@@ -21,10 +21,10 @@ public class StartStageControl implements Initializable {
     private final int IP_MAX_VALUE = 255;
     private final int IP_MIN_VALUE = 0;
     private final String programTitle = "UWU Gruppe";
-    private final Integer[] arrayData = {880,404,100,25550};
-    private final char[] notAllowed = {};
+    private final Integer[] arrayData = {880,404,100,2500};
     private Integer networkPort = 0;
-
+    @FXML
+    private Button connection = new Button();
     @FXML
     private Label networkLabel = new Label();
     @FXML
@@ -35,6 +35,8 @@ public class StartStageControl implements Initializable {
     private TextField ipField3 = new TextField();
     @FXML
     private TextField ipField4 = new TextField();
+
+    private boolean[] ipcheck = {false,false,false,false};
     public void Quit(ActionEvent event) {
         javafx.application.Platform.exit();
     }
@@ -60,6 +62,9 @@ public class StartStageControl implements Initializable {
     }
     private void update(){
         networkLabel.setText(": " + networkPort);
+        if (ipcheck[0]&&ipcheck[1]&&ipcheck[2]&&ipcheck[3]) {
+            connection.setVisible(true);
+        }
     }
     public void networkHelp(ActionEvent event) {
         List<Integer> dialogData = Arrays.asList(arrayData);
@@ -99,6 +104,9 @@ public class StartStageControl implements Initializable {
                         int change = Integer.parseInt(newValue);
                         if(!(change > IP_MIN_VALUE && change <= IP_MAX_VALUE)){
                             ipField1.setText(oldValue);
+                        }else {
+                            ipcheck[0] = true;
+                            update();
                         }
                     } else if (!newValue.isEmpty()) {
                         ipField1.setText(oldValue);
@@ -113,6 +121,9 @@ public class StartStageControl implements Initializable {
                     int change = Integer.parseInt(newValue);
                     if(!(change >= IP_MIN_VALUE && change <= IP_MAX_VALUE)){
                         ipField2.setText(oldValue);
+                    }else {
+                        ipcheck[1] = true;
+                        update();
                     }
                 } else if (!newValue.isEmpty()) {
                     ipField2.setText(oldValue);
@@ -127,6 +138,9 @@ public class StartStageControl implements Initializable {
                     int change = Integer.parseInt(newValue);
                     if(!(change >= IP_MIN_VALUE && change <= IP_MAX_VALUE)){
                         ipField3.setText(oldValue);
+                    }else {
+                        ipcheck[3] = true;
+                        update();
                     }
                 } else if (!newValue.isEmpty()) {
                     ipField3.setText(oldValue);
@@ -140,6 +154,9 @@ public class StartStageControl implements Initializable {
                     int change = Integer.parseInt(newValue);
                     if(!(change > IP_MIN_VALUE && change < IP_MAX_VALUE)){
                         ipField4.setText(oldValue);
+                    }else {
+                        ipcheck[3] = true;
+                        update();
                     }
                 } else if (!newValue.isEmpty()) {
                     ipField4.setText(oldValue);
