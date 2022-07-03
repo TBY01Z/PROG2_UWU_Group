@@ -73,7 +73,7 @@
                   </light>
                </Lighting>
             </effect></Label>
-           <Button fx:id="connect" mnemonicParsing="false" styleClass="root" text="connect" visible="false" GridPane.columnIndex="7" GridPane.rowIndex="2">
+           <Button fx:id="connection" mnemonicParsing="false" styleClass="root" text="connect" visible="false" GridPane.columnIndex="7" GridPane.rowIndex="2">
             <effect>
                <InnerShadow />
             </effect></Button>

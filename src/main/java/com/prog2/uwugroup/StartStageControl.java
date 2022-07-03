@@ -64,6 +64,8 @@ public class StartStageControl implements Initializable {
         networkLabel.setText(": " + networkPort);
         if (ipcheck[0]&&ipcheck[1]&&ipcheck[2]&&ipcheck[3]) {
             connection.setVisible(true);
+        }else{
+            connection.setVisible(false);
         }
     }
     public void networkHelp(ActionEvent event) {
@@ -110,6 +112,11 @@ public class StartStageControl implements Initializable {
                         }
                     } else if (!newValue.isEmpty()) {
                         ipField1.setText(oldValue);
+                        ipcheck[0] = false;
+                        update();
+                    }else {
+                        ipcheck[0] = false;
+                        update();
                     }
                 }
         });
@@ -127,6 +134,11 @@ public class StartStageControl implements Initializable {
                     }
                 } else if (!newValue.isEmpty()) {
                     ipField2.setText(oldValue);
+                    ipcheck[1] = false;
+                    update();
+                }else {
+                    ipcheck[1] = false;
+                    update();
                 }
             }
         });
@@ -139,11 +151,16 @@ public class StartStageControl implements Initializable {
                     if(!(change >= IP_MIN_VALUE && change <= IP_MAX_VALUE)){
                         ipField3.setText(oldValue);
                     }else {
-                        ipcheck[3] = true;
+                        ipcheck[2] = true;
                         update();
                     }
                 } else if (!newValue.isEmpty()) {
                     ipField3.setText(oldValue);
+                    ipcheck[2] = false;
+                    update();
+                }else {
+                    ipcheck[2] = false;
+                    update();
                 }
             }
         });
@@ -160,6 +177,11 @@ public class StartStageControl implements Initializable {
                     }
                 } else if (!newValue.isEmpty()) {
                     ipField4.setText(oldValue);
+                    ipcheck[3] = false;
+                    update();
+                }else {
+                    ipcheck[3] = false;
+                    update();
                 }
             }
         });
