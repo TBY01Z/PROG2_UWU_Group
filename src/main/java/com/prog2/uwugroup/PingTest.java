@@ -6,7 +6,8 @@ public class PingTest {
     private Client client;
     public PingTest(String host, int port) {
         client = new Client(host, port);
-        client.connect();
+
+        client.connect();client.run();
         System.out.println(0);
         StringPacket sw = new StringPacket();
         client.sendObject(sw);

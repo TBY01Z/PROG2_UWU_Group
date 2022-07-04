@@ -30,6 +30,7 @@ public class Client implements Runnable {
             socket = new Socket(host, port);
             outStream = new ObjectOutputStream(socket.getOutputStream());
             inStream = new ObjectInputStream(socket.getInputStream());
+            System.out.println(inStream.toString());
             listener = new Listener();
             new Thread(this).start();
         } catch(ConnectException e){
