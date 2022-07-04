@@ -16,8 +16,9 @@
            <Menu mnemonicParsing="false" onAction="#Quit" text="Quit">
                <MenuItem mnemonicParsing="false" text="Close" />
            </Menu>
-           <Menu mnemonicParsing="false" text="Network">
-               <MenuItem mnemonicParsing="false" onAction="#networkHelp" text="Network" />
+           <Menu mnemonicParsing="false" text="Network Port">
+               <MenuItem mnemonicParsing="false" onAction="#networkHelp" text="Server" />
+               <MenuItem mnemonicParsing="false" onAction="#networkHelp" text="Client" />
            </Menu>
            <Menu mnemonicParsing="false" text="Help">
                <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
@@ -49,7 +50,7 @@
            <TextField fx:id="ipField3" layoutX="61.0" layoutY="43.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
            <TextField fx:id="ipField4" layoutX="61.0" layoutY="43.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
            <Label fx:id="networkLabel" text=": 0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-           <Button fx:id="connection" onAction="#connection" visible="false" mnemonicParsing="false" text="connect" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+           <Button fx:id="connection" onAction="#onConnection" visible="false" mnemonicParsing="false" text="connect" GridPane.columnIndex="7" GridPane.rowIndex="2" />
        </GridPane>
    </center>
     <stylesheets>

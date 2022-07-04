@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import static java.lang.Thread.sleep;
+
 public class Connection implements Runnable{
 
     private Socket socket;
@@ -29,6 +31,8 @@ public class Connection implements Runnable{
             while(socket.isConnected()){
                 try{
                     Object data = in.readObject();
+
+                    Listener.received(data);
                 } catch(ClassNotFoundException e){
                     e.printStackTrace();
                 }

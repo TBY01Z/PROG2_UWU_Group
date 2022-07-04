@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class StartStage extends Application {
+    private static Server server;
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(StartStage.class.getResource("StartStage.fxml"));
@@ -18,8 +19,17 @@ public class StartStage extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
-        Server server = new Server(8080);
+        server = new Server(8080);
         server.start();
+        launch();
+
+    }
+
+    public static Server server() {
+        return server;
+    }
+
+    public static void setServer(Server server) {
+        StartStage.server = server;
     }
 }

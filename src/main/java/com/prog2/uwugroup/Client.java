@@ -5,9 +5,7 @@ import com.prog2.uwugroup.packets.RemovePlayerPacket;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.ConnectException;
-import java.net.Socket;
-import java.net.SocketException;
+import java.net.*;
 
 public class Client implements Runnable {
 
@@ -30,7 +28,7 @@ public class Client implements Runnable {
             socket = new Socket(host, port);
             outStream = new ObjectOutputStream(socket.getOutputStream());
             inStream = new ObjectInputStream(socket.getInputStream());
-            System.out.println(inStream.toString());
+            System.out.println(inStream);
             listener = new Listener();
             new Thread(this).start();
         } catch(ConnectException e){

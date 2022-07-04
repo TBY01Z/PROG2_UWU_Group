@@ -34,14 +34,24 @@ public class StartStageControl implements Initializable {
     @FXML
     private TextField ipField4 = new TextField();
 
-    private boolean[] ipcheck = {false,false,false,false};
+    private boolean[] ipcheck = {false, false, false, false};
+
     public void Quit(ActionEvent event) {
         javafx.application.Platform.exit();
     }
 
-    public PingTest connection() {
-        PingTest test = new PingTest(ipField1.getText() + "." + ipField2.getText() + "." + ipField3.getText() + "." + ipField4.getText(), getPort());
+    public PingTest onConnection() throws UnknownHostException {
+        PingTest test = new PingTest(InetAddress.getLocalHost(), getPort());//ipField1.getText() + "." + ipField2.getText() + "." + ipField3.getText() + "." + ipField4.getText(), getPort());
         return test;
+    }
+
+    public static void rec() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("UwU");
+        alert.setHeaderText("Message");
+        String s = null;
+        alert.setContentText("dir wurde ein strick geschenkt <3");
+        alert.show();
     }
 
     public void showIP(ActionEvent event) {
@@ -49,30 +59,33 @@ public class StartStageControl implements Initializable {
         alert.setTitle(programTitle);
         alert.setHeaderText("Your IP");
         String s = null;
-        try{
-            InetAddress ownIP=InetAddress.getLocalHost();
+        try {
+            InetAddress ownIP = InetAddress.getLocalHost();
             System.out.println(ownIP.getHostName());
             System.out.println(ownIP.getHostAddress());
             // TODO: REMOVE ME!!!
             s = ownIP.getHostAddress();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Exception caught =" + e.getMessage());
         }
         alert.setContentText(s);
         alert.show();
     }
-    public void enterTestingGrounds(ActionEvent event) throws IOException{
+
+    public void enterTestingGrounds(ActionEvent event) throws IOException {
         MyIO.loadXML(event, "MainStage.fxml");
         System.out.println("enterTestingGrounds event triggered.");     //TODO: REMOVE ME!!!
     }
-    private void update(){
+
+    private void update() {
         networkLabel.setText(": " + networkPort);
-        if (ipcheck[0]&&ipcheck[1]&&ipcheck[2]&&ipcheck[3]) {
+        if (ipcheck[0] && ipcheck[1] && ipcheck[2] && ipcheck[3]) {
             connection.setVisible(true);
-        }else{
+        } else {
             connection.setVisible(false);
         }
     }
+
     public void networkHelp(ActionEvent event) {
         List<Integer> dialogData = Arrays.asList(arrayData);
 
@@ -81,7 +94,7 @@ public class StartStageControl implements Initializable {
         dialog.setHeaderText("Select your Port");
 
         Optional<Integer> result = dialog.showAndWait();
-        int selected = 0;
+        int selected = 8080;
 
         if (result.isPresent()) {
 
@@ -89,6 +102,7 @@ public class StartStageControl implements Initializable {
         }
 
         networkPort = selected;
+        StartStage.server().changePort(networkPort);
         update();
     }
 
@@ -96,7 +110,7 @@ public class StartStageControl implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(programTitle);
         alert.setHeaderText("About");
-        String s ="Your IP is: 127.0.0.1 ";//TODO: change about
+        String s = "Your IP is: 127.0.0.1 ";//TODO: change about
         alert.setContentText(s);
         alert.show();
     }
@@ -107,33 +121,33 @@ public class StartStageControl implements Initializable {
         ipField1.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if(newValue.matches("\\d+")){
-                        int change = Integer.parseInt(newValue);
-                        if(!(change > IP_MIN_VALUE && change <= IP_MAX_VALUE)){
-                            ipField1.setText(oldValue);
-                        }else {
-                            ipcheck[0] = true;
-                            update();
-                        }
-                    } else if (!newValue.isEmpty()) {
+                if (newValue.matches("\\d+")) {
+                    int change = Integer.parseInt(newValue);
+                    if (!(change > IP_MIN_VALUE && change <= IP_MAX_VALUE)) {
                         ipField1.setText(oldValue);
-                        ipcheck[0] = false;
-                        update();
-                    }else {
-                        ipcheck[0] = false;
+                    } else {
+                        ipcheck[0] = true;
                         update();
                     }
+                } else if (!newValue.isEmpty()) {
+                    ipField1.setText(oldValue);
+                    ipcheck[0] = false;
+                    update();
+                } else {
+                    ipcheck[0] = false;
+                    update();
                 }
+            }
         });
         //noinspection DuplicatedCode
         ipField2.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(newValue.matches("\\d+")){
+                if (newValue.matches("\\d+")) {
                     int change = Integer.parseInt(newValue);
-                    if(!(change >= IP_MIN_VALUE && change <= IP_MAX_VALUE)){
+                    if (!(change >= IP_MIN_VALUE && change <= IP_MAX_VALUE)) {
                         ipField2.setText(oldValue);
-                    }else {
+                    } else {
                         ipcheck[1] = true;
                         update();
                     }
@@ -141,7 +155,7 @@ public class StartStageControl implements Initializable {
                     ipField2.setText(oldValue);
                     ipcheck[1] = false;
                     update();
-                }else {
+                } else {
                     ipcheck[1] = false;
                     update();
                 }
@@ -151,11 +165,11 @@ public class StartStageControl implements Initializable {
         ipField3.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(newValue.matches("\\d+")){
+                if (newValue.matches("\\d+")) {
                     int change = Integer.parseInt(newValue);
-                    if(!(change >= IP_MIN_VALUE && change <= IP_MAX_VALUE)){
+                    if (!(change >= IP_MIN_VALUE && change <= IP_MAX_VALUE)) {
                         ipField3.setText(oldValue);
-                    }else {
+                    } else {
                         ipcheck[2] = true;
                         update();
                     }
@@ -163,7 +177,7 @@ public class StartStageControl implements Initializable {
                     ipField3.setText(oldValue);
                     ipcheck[2] = false;
                     update();
-                }else {
+                } else {
                     ipcheck[2] = false;
                     update();
                 }
@@ -172,11 +186,11 @@ public class StartStageControl implements Initializable {
         ipField4.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(newValue.matches("\\d+")){
+                if (newValue.matches("\\d+")) {
                     int change = Integer.parseInt(newValue);
-                    if(!(change > IP_MIN_VALUE && change < IP_MAX_VALUE)){
+                    if (!(change > IP_MIN_VALUE && change < IP_MAX_VALUE)) {
                         ipField4.setText(oldValue);
-                    }else {
+                    } else {
                         ipcheck[3] = true;
                         update();
                     }
@@ -184,7 +198,7 @@ public class StartStageControl implements Initializable {
                     ipField4.setText(oldValue);
                     ipcheck[3] = false;
                     update();
-                }else {
+                } else {
                     ipcheck[3] = false;
                     update();
                 }
@@ -192,10 +206,12 @@ public class StartStageControl implements Initializable {
         });
 
     }
-    private static int getPort(){
+
+    private static int getPort() {
         return networkPort;
     }
-    private static void setPort(int newPort){
+
+    private static void setPort(int newPort) {
         networkPort = newPort;
         Server server = new Server(networkPort);
     }
