@@ -49,7 +49,7 @@
            <TextField fx:id="ipField3" layoutX="61.0" layoutY="43.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
            <TextField fx:id="ipField4" layoutX="61.0" layoutY="43.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
            <Label fx:id="networkLabel" text=": 0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-           <Button fx:id="connection" mnemonicParsing="false" text="connect" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+           <Button fx:id="connection" onAction="#connection" mnemonicParsing="false" text="connect" GridPane.columnIndex="7" GridPane.rowIndex="2" />
        </GridPane>
    </center>
     <stylesheets>
