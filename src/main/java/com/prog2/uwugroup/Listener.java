@@ -2,6 +2,7 @@ package com.prog2.uwugroup;
 
 import com.prog2.uwugroup.packets.AddPlayerPacket;
 import com.prog2.uwugroup.packets.RemovePlayerPacket;
+import com.prog2.uwugroup.packets.StringPacket;
 
 public class Listener {
 
@@ -14,6 +15,8 @@ public class Listener {
             RemovePlayerPacket packet = (RemovePlayerPacket) p;
             System.out.print(PlayerHandler.players.get(packet.id).name + " has left the game.");
             PlayerHandler.players.remove(packet.id);
+        } else if(p instanceof StringPacket){
+            System.out.println("dir wurde ein strick geschenkt <3");
         }
     }
 
