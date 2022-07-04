@@ -41,7 +41,7 @@ public class StartStageControl implements Initializable {
     }
 
     public PingTest onConnection() throws UnknownHostException {
-        PingTest test = new PingTest(InetAddress.getLocalHost(), getPort());//ipField1.getText() + "." + ipField2.getText() + "." + ipField3.getText() + "." + ipField4.getText(), getPort());
+        PingTest test = new PingTest(ipField1.getText() + "." + ipField2.getText() + "." + ipField3.getText() + "." + ipField4.getText(), getPort());
         return test;
     }
 
