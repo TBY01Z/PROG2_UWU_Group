@@ -7,7 +7,9 @@ public class PingTest {
     public PingTest(String host, int port) {
         client = new Client(host, port);
         client.connect();
-        StringPacket sw = null;
+        System.out.println(0);
+        StringPacket sw = new StringPacket();
         client.sendObject(sw);
+        System.out.println(1);
     }
 }

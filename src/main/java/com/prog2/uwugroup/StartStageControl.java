@@ -40,7 +40,7 @@ public class StartStageControl implements Initializable {
     }
 
     public PingTest connection() {
-        PingTest test = new PingTest(ipField1 + "." + ipField2 + "." + ipField3 + "." + ipField4, getPort());
+        PingTest test = new PingTest(ipField1.getText() + "." + ipField2.getText() + "." + ipField3.getText() + "." + ipField4.getText(), getPort());
         return test;
     }
 
@@ -51,6 +51,9 @@ public class StartStageControl implements Initializable {
         String s = null;
         try{
             InetAddress ownIP=InetAddress.getLocalHost();
+            System.out.println(ownIP.getHostName());
+            System.out.println(ownIP.getHostAddress());
+            // TODO: REMOVE ME!!!
             s = ownIP.getHostAddress();
         }catch (Exception e){
             System.out.println("Exception caught =" + e.getMessage());
