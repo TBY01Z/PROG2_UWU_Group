@@ -4,9 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import java.io.IOException;
@@ -21,8 +19,8 @@ public class StartStageControl implements Initializable {
     private final int IP_MAX_VALUE = 255;
     private final int IP_MIN_VALUE = 0;
     private final String programTitle = "UWU Gruppe";
-    private final Integer[] arrayData = {880,404,100,2500};
-    private Integer networkPort = 0;
+    private final Integer[] arrayData = {8888, 5642};
+    private static Integer networkPort = 0;
     @FXML
     private Button connection = new Button();
     @FXML
@@ -186,5 +184,11 @@ public class StartStageControl implements Initializable {
             }
         });
 
+    }
+    private static int getPort(){
+        return networkPort;
+    }
+    private static void setPort(int newPort){
+        networkPort = newPort;
     }
 }

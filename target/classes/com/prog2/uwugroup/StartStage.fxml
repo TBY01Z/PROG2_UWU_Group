@@ -3,10 +3,9 @@
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prog2.uwugroup.StartStageControl">
+<BorderPane visible="true" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prog2.uwugroup.StartStageControl">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -25,9 +24,6 @@
                <MenuItem mnemonicParsing="false" onAction="#showIP" text="Own IP" />
 
            </Menu>
-         <effect>
-            <InnerShadow choke="0.4" height="0.0" radius="22.625" width="92.5" />
-         </effect>
        </MenuBar>
    </top>
    <center>
@@ -39,45 +35,21 @@
                <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="10.0" />
                <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="10.0" />
                <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="10.0" prefWidth="32.39999999999998" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.39999999999998" minWidth="10.0" prefWidth="108.39999999999998" />
            </columnConstraints>
            <rowConstraints>
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
-           <Label prefHeight="18.0" prefWidth="46.0" text="IP :" textAlignment="RIGHT" GridPane.rowIndex="1">
-            <effect>
-               <Lighting>
-                  <bumpInput>
-                     <Shadow />
-                  </bumpInput>
-                  <light>
-                     <Light.Distant />
-                  </light>
-               </Lighting>
-            </effect></Label>
-           <TextField fx:id="ipField1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+           <Label prefHeight="18.0" prefWidth="46.0" text="IP :" textAlignment="RIGHT" GridPane.rowIndex="1" />
+           <TextField fx:id="ipField1" layoutX="61.0" layoutY="43.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
            <TextField fx:id="ipField2" layoutX="61.0" layoutY="43.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-           <TextField fx:id="ipField3" layoutX="211.0" layoutY="43.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-           <TextField fx:id="ipField4" layoutX="211.0" layoutY="43.0" prefHeight="26.0" prefWidth="53.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-           <Label fx:id="networkLabel" text=": 0" GridPane.columnIndex="5" GridPane.rowIndex="1">
-            <effect>
-               <Lighting>
-                  <bumpInput>
-                     <Shadow />
-                  </bumpInput>
-                  <light>
-                     <Light.Distant />
-                  </light>
-               </Lighting>
-            </effect></Label>
-           <Button fx:id="connection" mnemonicParsing="false" styleClass="root" text="connect" visible="false" GridPane.columnIndex="7" GridPane.rowIndex="2">
-            <effect>
-               <InnerShadow />
-            </effect></Button>
-
+           <TextField fx:id="ipField3" layoutX="61.0" layoutY="43.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+           <TextField fx:id="ipField4" layoutX="61.0" layoutY="43.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+           <Label fx:id="networkLabel" text=": 0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+           <Button fx:id="connection" mnemonicParsing="false" text="connect" GridPane.columnIndex="7" GridPane.rowIndex="2" />
        </GridPane>
    </center>
     <stylesheets>
