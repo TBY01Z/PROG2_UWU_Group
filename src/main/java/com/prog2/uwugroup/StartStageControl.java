@@ -19,7 +19,7 @@ public class StartStageControl implements Initializable {
     private final int IP_MAX_VALUE = 255;
     private final int IP_MIN_VALUE = 0;
     private final String programTitle = "UWU Gruppe";
-    private final Integer[] arrayData = {8888, 5642};
+    private final Integer[] arrayData = {8080, 8443, 9900, 9990};
     private static Integer networkPort = 0;
     @FXML
     private Button connection = new Button();
