@@ -19,5 +19,6 @@ public class StartStage extends Application {
 
     public static void main(String[] args) {
         launch();
+        Server server = new Server(8080);
     }
 }

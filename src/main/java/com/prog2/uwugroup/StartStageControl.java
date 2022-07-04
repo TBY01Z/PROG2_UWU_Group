@@ -190,5 +190,6 @@ public class StartStageControl implements Initializable {
     }
     private static void setPort(int newPort){
         networkPort = newPort;
+        Server server = new Server(networkPort);
     }
 }
