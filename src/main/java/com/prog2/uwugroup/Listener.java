@@ -24,8 +24,7 @@ public class Listener {
         } else if(p instanceof StringPacket){
             System.out.println("dir wurde ein strick geschenkt <3");
             Platform.runLater(StartStageControl::rec);
-            
+
         }
     }
-
 }

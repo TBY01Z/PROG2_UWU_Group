@@ -45,7 +45,6 @@ public class Server implements Runnable{
             try{
                 Socket socket = serverSocket.accept();
                 initSocket(socket);
-                //Platform.runLater(()-> {});
             } catch(IOException e){
                 e.printStackTrace();
             }

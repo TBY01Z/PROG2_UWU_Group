@@ -28,7 +28,6 @@ public class Client implements Runnable {
             socket = new Socket(host, port);
             outStream = new ObjectOutputStream(socket.getOutputStream());
             inStream = new ObjectInputStream(socket.getInputStream());
-            System.out.println(inStream);
             listener = new Listener();
             new Thread(this).start();
         } catch(ConnectException e){
@@ -57,7 +56,6 @@ public class Client implements Runnable {
     //daten zu server senden
     public void sendObject(Object packet){
         try{
-            System.out.println(packet.toString());
             outStream.writeObject(packet);
         } catch(IOException e){
             e.printStackTrace();
