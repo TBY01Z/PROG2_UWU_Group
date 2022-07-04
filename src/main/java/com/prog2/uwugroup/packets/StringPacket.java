@@ -7,4 +7,5 @@ public class StringPacket implements Serializable {
 
     private static final long serialVersionUID = 0l;
     private int id;
+
 }

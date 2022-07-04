@@ -39,6 +39,10 @@ public class StartStageControl implements Initializable {
         javafx.application.Platform.exit();
     }
 
+    public PingTest connection() {
+        PingTest test = new PingTest(ipField1 + "." + ipField2 + "." + ipField3 + "." + ipField4, getPort());
+        return test;
+    }
 
     public void showIP(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
