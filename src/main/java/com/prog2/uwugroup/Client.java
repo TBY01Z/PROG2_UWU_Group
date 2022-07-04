@@ -8,15 +8,14 @@ import java.io.ObjectOutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.List;
 
 public class Client implements Runnable {
 
     private String host;
     private int port;
     private Socket socket;
-    private ObjectOutputStream out;
-    private ObjectInputStream in;
+    private ObjectOutputStream outStream;
+    private ObjectInputStream inStream;
     private boolean running = false;
     private Listener listener;
 
@@ -29,8 +28,8 @@ public class Client implements Runnable {
     public void connect(){
         try{
             socket = new Socket(host, port);
-            out = new ObjectOutputStream(socket.getOutputStream());
-            in = new ObjectInputStream(socket.getInputStream());
+            outStream = new ObjectOutputStream(socket.getOutputStream());
+            inStream = new ObjectInputStream(socket.getInputStream());
             listener = new Listener();
             new Thread(this).start();
         } catch(ConnectException e){
@@ -47,8 +46,8 @@ public class Client implements Runnable {
             running = false;
             RemovePlayerPacket packet = new RemovePlayerPacket();
             sendObject(packet);
-            in.close();
-            out.close();
+            inStream.close();
+            outStream.close();
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,7 +58,7 @@ public class Client implements Runnable {
     //daten zu server senden
     public void sendObject(Object packet){
         try{
-            out.writeObject(packet);
+            outStream.writeObject(packet);
         } catch(IOException e){
             e.printStackTrace();
         }
@@ -71,7 +70,7 @@ public class Client implements Runnable {
             running = true;
             while(running){
                 try{
-                    Object data = in.readObject();
+                    Object data = inStream.readObject();
                     listener.received(data);
                 } catch(ClassNotFoundException e){
                     e.printStackTrace();
