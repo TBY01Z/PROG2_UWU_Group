@@ -58,6 +58,7 @@ public class Client implements Runnable {
     //daten zu server senden
     public void sendObject(Object packet){
         try{
+            System.out.println(packet.toString());
             outStream.writeObject(packet);
         } catch(IOException e){
             e.printStackTrace();
