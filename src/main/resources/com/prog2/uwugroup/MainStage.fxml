@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prog2.uwugroup.MainStageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prog2.uwugroup.MainStageController">
    <children>
       <ProgressBar fx:id="healthBar" layoutX="14.0" layoutY="368.0" prefHeight="18.0" prefWidth="147.0" progress="0.0" />
       <Button layoutX="36.0" layoutY="32.0" mnemonicParsing="false" onAction="#onPlayerMoveUp" text="nach oben" />
@@ -34,5 +38,6 @@
       </MenuBar>
       <Button layoutX="46.0" layoutY="66.0" mnemonicParsing="false" onAction="#onPlayerHeal" text="heilung" />
       <Label fx:id="actionLabel" layoutY="257.0" prefHeight="55.0" prefWidth="606.0" />
+      <Button layoutX="322.0" layoutY="106.0" mnemonicParsing="false" onAction="#onEnterChat" prefHeight="25.0" prefWidth="87.0" text="Chat" />
    </children>
 </AnchorPane>
