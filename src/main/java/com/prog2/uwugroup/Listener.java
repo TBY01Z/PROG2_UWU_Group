@@ -18,7 +18,7 @@ public class Listener {
             System.out.println("dir wurde ein strick geschenkt <3");
             Platform.runLater(StartStageControl::rec);
         } else if(p instanceof ChatPacket){
-            ;
+            ChatPacket.getContent();
         }
     }
 }
