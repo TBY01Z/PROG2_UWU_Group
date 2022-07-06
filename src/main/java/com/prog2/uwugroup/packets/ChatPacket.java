@@ -4,5 +4,5 @@ import java.io.Serializable;
 
 public class ChatPacket implements Serializable {
     private static final long serialVersionUID = 1l;
-    private int id;
+    private int id; //cock
 }
