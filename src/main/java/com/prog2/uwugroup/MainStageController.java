@@ -64,6 +64,10 @@ public class MainStageController implements Initializable {
             return health;
         }
     }
+
+    public void onEnterChat(ActionEvent event){
+        MyIO.loadXML(event, "ChatScene.fxml");
+    }
     public void onApplicationQuit(ActionEvent event){
         javafx.application.Platform.exit();
     }
