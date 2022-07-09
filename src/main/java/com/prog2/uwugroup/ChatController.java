@@ -26,7 +26,7 @@ public class ChatController implements Initializable {
     public void sendMsg(ActionEvent event){
         msg = textField.getText();
         new ChatPacket(msg);
-        textArea.setText(msg);
+        textArea.appendText(msg);
     }
 
 }
