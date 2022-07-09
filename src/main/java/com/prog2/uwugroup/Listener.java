@@ -15,7 +15,7 @@ public class Listener {
 
     public static void received(Object p){
         if(p instanceof StringPacket){
-            System.out.println("dir wurde ein strick geschenkt <3");
+            System.out.println("Verbindungsanfrage erhalten.");
             Platform.runLater(StartStageControl::rec);
         } else if(p instanceof ChatPacket){
             ChatPacket.getContent();

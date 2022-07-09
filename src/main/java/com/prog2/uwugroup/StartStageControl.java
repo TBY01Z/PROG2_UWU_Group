@@ -40,17 +40,17 @@ public class StartStageControl implements Initializable {
         javafx.application.Platform.exit();
     }
 
-    public PingTest onConnection() throws UnknownHostException {
-        PingTest test = new PingTest(ipField1.getText() + "." + ipField2.getText() + "." + ipField3.getText() + "." + ipField4.getText(), getPort());
-        return test;
+    public ConnectionRequest onConnection() throws UnknownHostException {
+        ConnectionRequest request = new ConnectionRequest(ipField1.getText() + "." + ipField2.getText() + "." + ipField3.getText() + "." + ipField4.getText(), getPort());
+        return request;
     }
 
     public static void rec() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("UwU");
-        alert.setHeaderText("Message");
+        alert.setTitle("Verbindungsanfrage");
+        alert.setHeaderText("Verbindungsanfrage");
         String s = null;
-        alert.setContentText("dir wurde ein strick geschenkt <3");
+        alert.setContentText("Sie haben eine neue Verbindungsanfrage erhalten.");
         alert.show();
     }
 
