@@ -46,12 +46,19 @@ public class StartStageControl implements Initializable {
     }
 
     public static void rec() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Verbindungsanfrage");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("UWU Group");
         alert.setHeaderText("Verbindungsanfrage");
         String s = null;
         alert.setContentText("Sie haben eine neue Verbindungsanfrage erhalten.");
-        alert.show();
+
+        Optional<ButtonType> result = alert.showAndWait();
+        ButtonType button = result.orElse(ButtonType.CANCEL);
+        if (button == ButtonType.OK) {
+            System.out.println("computer sagt ja");
+        } else {
+            System.out.println("computer sagt nein");
+        }
     }
 
     public void showIP(ActionEvent event) {
