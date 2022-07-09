@@ -45,7 +45,7 @@ public class StartStageControl implements Initializable {
         return request;
     }
 
-    public static void rec() {
+    public static void request() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("UWU Group");
         alert.setHeaderText("Verbindungsanfrage");
