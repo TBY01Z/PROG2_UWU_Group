@@ -4,12 +4,12 @@ package com.prog2.uwugroup.packets;
 import java.io.*;
 import java.util.Scanner;
 
-// File recived -> chose accept ->
-// File send -> chose File -> bestaetigen
+// File received -> chose accept ->
+// File send -> chose File -> accept
 public class FilePacket implements Serializable {
     private static final long serialVersionUID = 1l;
     public int id;
-    private String path = System.getProperty("user.dir") + "\\model.txt";
+    private String path;
     private String inputString = "";
     private File file;
     public FilePacket(String path){
