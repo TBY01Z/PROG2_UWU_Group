@@ -22,7 +22,6 @@
    <top>
        <MenuBar BorderPane.alignment="CENTER">
            <Menu mnemonicParsing="false" onAction="#Quit" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#setUsername" text="Set Username" />
                <MenuItem mnemonicParsing="false" text="Quit Application" />
            </Menu>
            <Menu mnemonicParsing="false" text="Network Port">
