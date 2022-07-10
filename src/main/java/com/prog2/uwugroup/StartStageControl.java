@@ -41,6 +41,7 @@ public class StartStageControl implements Initializable {
 
     public void Quit(ActionEvent event) {
         javafx.application.Platform.exit();
+        StartStage.server().shutDown();
     }
 
     public ConnectionRequest onConnection() throws UnknownHostException {
