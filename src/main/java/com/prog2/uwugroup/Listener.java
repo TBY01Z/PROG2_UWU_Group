@@ -10,6 +10,9 @@ public class Listener {
     public static void received(Object p){
         if(p instanceof StringPacket){
             System.out.println("Verbindungsanfrage erhalten.");
+            StringPacket packet =(StringPacket) p;
+            final ActionEvent event = packet.getEvent();
+            StartStageControl.setEvent(event);
             Platform.runLater(StartStageControl::request);
         } else if(p instanceof ChatPacket){
             ChatPacket.getContent();

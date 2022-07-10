@@ -44,11 +44,13 @@ public class StartStageControl implements Initializable {
         StartStage.server().shutDown();
     }
 
-    public ConnectionRequest onConnection() throws UnknownHostException {
-        ConnectionRequest request = new ConnectionRequest(ipField1.getText() + "." + ipField2.getText() + "." + ipField3.getText() + "." + ipField4.getText(), getPort());
-        return request;
+    public void onConnection(ActionEvent event) throws UnknownHostException {
+        ConnectionRequest request = new ConnectionRequest(ipField1.getText() + "." + ipField2.getText() + "." + ipField3.getText() + "." + ipField4.getText(), getPort(),event);
     }
-
+    private static ActionEvent event;
+    public static void setEvent(ActionEvent localEvent){
+        event = localEvent;
+    }
     public static void request() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("UWU Group");
@@ -61,10 +63,13 @@ public class StartStageControl implements Initializable {
         if (button == ButtonType.OK) {
             System.out.println("computer sagt ja");
             connectionAccepted = true;
+
         } else {
             System.out.println("computer sagt nein");
             connectionAccepted = false;
+
         }
+        ChatStart.startE(connectionAccepted);
     }
 
     public static void connectionRequestHandler(ActionEvent event){
