@@ -10,6 +10,5 @@ public class ConnectionRequest {
         client.connect();
         StringPacket sw = new StringPacket(event);
         client.sendObject(sw);
-
     }
 }

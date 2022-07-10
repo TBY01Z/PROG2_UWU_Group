@@ -17,7 +17,7 @@ public class ChatController implements Initializable {
     @FXML
     private TextField textField = new TextField();
     private String msg;
-    private String senderIdentity = "You";
+    private String senderIdentity = "Anon";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -10,9 +10,9 @@ public class ChatStart {
     public static void start() throws Exception {
         FXMLLoader fxmlLoader ;
         if(connection){
-            fxmlLoader = new FXMLLoader(StartStage.class.getResource("YesStage.fxml"));
+            fxmlLoader = new FXMLLoader(StartStage.class.getResource("ChatScene.fxml"));
         }else {
-            fxmlLoader = new FXMLLoader(StartStage.class.getResource("NoStage.fxml"));
+            fxmlLoader = new FXMLLoader(StartStage.class.getResource("StartStage.fxml"));
         }
         Scene scene = new Scene(fxmlLoader.load(), 800, 580);
         Stage stage = new Stage();

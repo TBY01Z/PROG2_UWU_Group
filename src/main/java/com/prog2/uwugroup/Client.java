@@ -81,4 +81,8 @@ public class Client implements Runnable {
             e.printStackTrace();
         }
     }
+
+    public boolean isRunning(){
+        return running;
+    }
 }
