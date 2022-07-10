@@ -21,6 +21,7 @@ public class StartStageControl implements Initializable {
     private final String programTitle = "UWU Gruppe";
     private final Integer[] arrayData = {8080, 8443, 9900, 9990};
     private static Integer networkPort = 0;
+    private static boolean connectionAccepted;
     @FXML
     private Button connection = new Button();
     @FXML
@@ -33,6 +34,8 @@ public class StartStageControl implements Initializable {
     private TextField ipField3 = new TextField();
     @FXML
     private TextField ipField4 = new TextField();
+    @FXML
+    private TextField usernameField = new TextField();
 
     private boolean[] ipcheck = {false, false, false, false};
 
@@ -56,8 +59,19 @@ public class StartStageControl implements Initializable {
         ButtonType button = result.orElse(ButtonType.CANCEL);
         if (button == ButtonType.OK) {
             System.out.println("computer sagt ja");
+            connectionAccepted = true;
         } else {
             System.out.println("computer sagt nein");
+            connectionAccepted = false;
+        }
+    }
+
+    public static void connectionRequestHandler(ActionEvent event){
+        if(connectionAccepted){
+            MyIO.loadXML(event, "ChatScene.fxml");
+        } else {
+            System.out.println("ABGEBROCHEN");
+            StartStage.server().shutDown();
         }
     }
 
@@ -69,8 +83,7 @@ public class StartStageControl implements Initializable {
         try {
             InetAddress ownIP = InetAddress.getLocalHost();
             System.out.println(ownIP.getHostName());
-            System.out.println(ownIP.getHostAddress());
-            // TODO: REMOVE ME!!!
+            System.out.println(ownIP.getHostAddress()); //TODO: REMOVE ME!
             s = ownIP.getHostAddress();
         } catch (Exception e) {
             System.out.println("Exception caught =" + e.getMessage());
@@ -81,7 +94,6 @@ public class StartStageControl implements Initializable {
 
     public void enterTestingGrounds(ActionEvent event) throws IOException {
         MyIO.loadXML(event, "MainStage.fxml");
-        System.out.println("enterTestingGrounds event triggered.");     //TODO: REMOVE ME!!!
     }
 
     private void update() {
@@ -221,5 +233,26 @@ public class StartStageControl implements Initializable {
     private static void setPort(int newPort) {
         networkPort = newPort;
         Server server = new Server(networkPort);
+    }
+
+    public void setUsername(ActionEvent event){
+//        TextInputDialog dialog = new TextInputDialog();
+//
+//        dialog.setTitle("UWU Group");
+//        dialog.setHeaderText("Username eingeben:");
+//        dialog.setContentText("Username:");
+//        dialog.showAndWait();
+
+//        Optional<String> result = dialog.showAndWait();
+//
+//        result.ifPresent(name -> {
+//            ChatController cc = new ChatController();
+//            cc.setSenderIdentity(name);
+//        });
+        ChatController cc = new ChatController();
+        cc.setSenderIdentity(usernameField.getText());
+        Optional<String> result = Optional.ofNullable(cc.getSenderIdentity());
+        Optional<String> resultUser = Optional.ofNullable(usernameField.getText());
+        System.out.println(result + "   " + resultUser); //nur fuer testzwecke //TODO:REMOVE ME! (mit den Optionalen)
     }
 }

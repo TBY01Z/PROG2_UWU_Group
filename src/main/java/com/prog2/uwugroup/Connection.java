@@ -35,6 +35,8 @@ public class Connection implements Runnable{
                     Listener.received(data);
                 } catch(ClassNotFoundException e){
                     e.printStackTrace();
+                } finally{
+                    close();
                 }
             }
         }catch(IOException e){

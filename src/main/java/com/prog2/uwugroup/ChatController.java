@@ -35,4 +35,12 @@ public class ChatController implements Initializable {
         return this.senderIdentity + ": " + sb.append("\n\n");
     }
 
+    public String getSenderIdentity(){
+        return senderIdentity;
+    }
+
+    public void setSenderIdentity(String senderIdentity){
+        this.senderIdentity = senderIdentity;
+    }
+
 }

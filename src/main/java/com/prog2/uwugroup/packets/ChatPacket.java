@@ -1,5 +1,7 @@
 package com.prog2.uwugroup.packets;
 
+import com.prog2.uwugroup.ChatController;
+
 import java.io.Serializable;
 
 public class ChatPacket implements Serializable {
