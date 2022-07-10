@@ -35,7 +35,7 @@ public class StartStageControl implements Initializable {
     @FXML
     private TextField ipField4 = new TextField();
     @FXML
-    private TextField usernameField = new TextField();
+    private static TextField usernameField = new TextField();
 
     private boolean[] ipcheck = {false, false, false, false};
 
@@ -67,10 +67,30 @@ public class StartStageControl implements Initializable {
     }
 
     public static void connectionRequestHandler(ActionEvent event){
-        if(connectionAccepted){
+        if(connectionAccepted && usernameField != null){
             MyIO.loadXML(event, "ChatScene.fxml");
+        } else if (usernameField == null) {
+            Alert warn = new Alert(Alert.AlertType.WARNING);
+            warn.setTitle("UWU Group");
+            warn.setHeaderText("Username darf nicht leer sein!");
+            warn.setContentText("Bitte geben Sie einen Usernamen ein.");
+            warn.showAndWait();
+
+            TextInputDialog dialog = new TextInputDialog();
+
+            dialog.setTitle("UWU Group");
+            dialog.setHeaderText("Username eingeben:");
+            dialog.setContentText("Username:");
+            dialog.showAndWait();
+
+            Optional<String> result = dialog.showAndWait();
+
+            result.ifPresent(name -> {
+            ChatController cc = new ChatController();
+            cc.setSenderIdentity(name);
+        });
         } else {
-            System.out.println("ABGEBROCHEN");
+            System.out.println("ABGEBROCHEN ODER FEHLGESCHLAGEN");
             StartStage.server().shutDown();
         }
     }
