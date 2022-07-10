@@ -28,6 +28,7 @@ public class ChatController implements Initializable {
         msg = textField.getText();
         ChatPacket message = new ChatPacket(msg);
         textArea.appendText(msgFormatter(message.getContent()));
+        textField.clear();
     }
 
     public String msgFormatter(String msg){
