@@ -1,5 +1,8 @@
 package com.prog2.uwugroup;
 
+import com.prog2.uwugroup.packets.ChatMessages;
+import com.prog2.uwugroup.packets.MessagePacket;
+import com.prog2.uwugroup.packets.StringPacket;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -20,7 +23,7 @@ public class StartStageControl implements Initializable {
     private final int IP_MIN_VALUE = 0;
     private final String programTitle = "UWU Gruppe";
     private final Integer[] arrayData = {8080, 8443, 9900, 9990};
-    private static Integer networkPort = 0;
+    private static Integer networkPort = 8080;
     private static boolean connectionAccepted;
     @FXML
     private Button connection = new Button();
@@ -45,11 +48,11 @@ public class StartStageControl implements Initializable {
     }
 
     public void onConnection(ActionEvent event) throws UnknownHostException {
-        ConnectionRequest request = new ConnectionRequest(ipField1.getText() + "." + ipField2.getText() + "." + ipField3.getText() + "." + ipField4.getText(), getPort(),event);
+        ConnectionRequest request = new ConnectionRequest(ipField1.getText() + "." + ipField2.getText() + "." + ipField3.getText() + "." + ipField4.getText(), getPort());
 
     }
-    private static ActionEvent event;
-    public static void setEvent(ActionEvent localEvent){
+    private static InetAddress event;
+    public static void setEvent(InetAddress localEvent){
         event = localEvent;
     }
     public static void request() {
@@ -70,7 +73,6 @@ public class StartStageControl implements Initializable {
             connectionAccepted = false;
 
         }
-        ChatStart.startE(connectionAccepted);
     }
 
     public static void connectionRequestHandler(ActionEvent event){
@@ -82,7 +84,7 @@ public class StartStageControl implements Initializable {
         }
     }
 
-    public void showIP(ActionEvent event) {
+    public void showIP() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(programTitle);
         alert.setHeaderText("Your IP");
@@ -261,5 +263,45 @@ public class StartStageControl implements Initializable {
         Optional<String> result = Optional.ofNullable(cc.getSenderIdentity());
         Optional<String> resultUser = Optional.ofNullable(usernameField.getText());
         System.out.println(result + "   " + resultUser); //nur fuer testzwecke //TODO:REMOVE ME! (mit den Optionalen)
+    }
+    private static ChatMessages chatMessages;
+    public static void setChatMessages(ChatMessages chatMessages1) {
+        chatMessages = chatMessages1;
+    }
+    public static ChatMessages chatMessages() {
+        return chatMessages;
+    }
+
+    public static void chatRequest() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("UWU Group");
+        alert.setHeaderText("Verbindungsanfrage");
+        String s = null;
+        alert.setContentText("Sie haben eine neue Verbindungsanfrage erhalten.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        ButtonType button = result.orElse(ButtonType.CANCEL);
+        if (button == ButtonType.OK) {
+            System.out.println("computer sagt ja");
+            connectionAccepted = true;
+            InetAddress inetAddress = chatMessages.chat().get(0).sender();
+            Client client = new Client(inetAddress.getHostAddress(), networkPort);
+            client.connect();
+            try {
+                MessagePacket message = new MessagePacket(InetAddress.getLocalHost(),"Connect accept", "Bob");
+                chatMessages.add(message);
+                client.sendObject(chatMessages);
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            System.out.println("computer sagt nein");
+            connectionAccepted = false;
+        }
+        chatWasAccepted();
+    }
+
+    public static void chatWasAccepted() {
+        //todo here load vom accept
     }
 }

@@ -1,14 +1,26 @@
 package com.prog2.uwugroup;
 
+import com.prog2.uwugroup.packets.ChatMessages;
+import com.prog2.uwugroup.packets.MessagePacket;
 import com.prog2.uwugroup.packets.StringPacket;
 import javafx.event.ActionEvent;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 public class ConnectionRequest {
     private Client client;
-    public ConnectionRequest(String host, int port, ActionEvent event) {
+    public ConnectionRequest(String host, int port) {
         client = new Client(host, port);
         client.connect();
-        StringPacket sw = new StringPacket(event);
-        client.sendObject(sw);
+        ChatMessages chatMessages = new ChatMessages();
+        try {
+            MessagePacket message = new MessagePacket(InetAddress.getLocalHost(),"Connect?", "Bob");
+            chatMessages.add(message);
+            client.sendObject(chatMessages);
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
     }
+
 }
