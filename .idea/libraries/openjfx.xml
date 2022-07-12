@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="openjfx">
+    <ANNOTATIONS>
+      <root url="file://$MAVEN_REPOSITORY$/org/openjfx" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$MAVEN_REPOSITORY$/org/openjfx" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$MAVEN_REPOSITORY$/org/openjfx" />
+    </JAVADOC>
+    <NATIVE>
+      <root url="file://$MAVEN_REPOSITORY$/org/openjfx" />
+    </NATIVE>
+    <SOURCES>
+      <root url="file://$MAVEN_REPOSITORY$/org/openjfx" />
+    </SOURCES>
+    <jarDirectory url="file://$MAVEN_REPOSITORY$/org/openjfx" recursive="false" />
+    <jarDirectory url="file://$MAVEN_REPOSITORY$/org/openjfx" recursive="false" type="SOURCES" />
+  </library>
+</component>

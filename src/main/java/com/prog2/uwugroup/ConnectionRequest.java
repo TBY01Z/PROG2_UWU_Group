@@ -5,6 +5,7 @@ import com.prog2.uwugroup.packets.MessagePacket;
 import com.prog2.uwugroup.packets.StringPacket;
 import javafx.event.ActionEvent;
 
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 

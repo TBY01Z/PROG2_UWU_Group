@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ChatMessages implements Serializable {
+
+    private static final long serialVersionUID = 1l;
     private final ArrayList<MessagePacket> chat = new ArrayList<MessagePacket>();
     public ChatMessages() {}
     public boolean add(MessagePacket message){
@@ -18,7 +20,7 @@ public class ChatMessages implements Serializable {
         return false;
     }
     //
-    public ObservableList<MessagePacket> chat() {
+    public ArrayList<MessagePacket> chat() {
         return chat;
     }
 }
