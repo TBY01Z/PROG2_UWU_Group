@@ -153,7 +153,7 @@ public class StartStageControl implements Initializable {
         StartStage.server().shutDown();
         StartStage.server().changePort(networkPort);
         StartStage.server().run();
-        update();
+        update(); //TODO: ich gebe auf, kann langsame computer safe crashen btw
     }
 
     public void about(ActionEvent event) {
