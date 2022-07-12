@@ -134,6 +134,28 @@ public class StartStageControl implements Initializable {
         update();
     }
 
+    public void startNewServer(ActionEvent event){
+        List<Integer> dialogData = Arrays.asList(arrayData);
+
+        ChoiceDialog dialog = new ChoiceDialog(dialogData.get(0), dialogData);
+        dialog.setTitle(programTitle);
+        dialog.setHeaderText("Select your Port");
+
+        Optional<Integer> result = dialog.showAndWait();
+        int selected = 8080;
+
+        if (result.isPresent()) {
+
+            selected = result.get();
+        }
+
+        networkPort = selected;
+        StartStage.server().shutDown();
+        StartStage.server().changePort(networkPort);
+        StartStage.server().run();
+        update();
+    }
+
     public void about(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(programTitle);

@@ -27,6 +27,7 @@
            <Menu mnemonicParsing="false" text="Network Port">
                <MenuItem mnemonicParsing="false" onAction="#networkHelp" text="Server" />
                <MenuItem mnemonicParsing="false" onAction="#networkHelp" text="Client" />
+            <MenuItem mnemonicParsing="false" text="Server starten" />
            </Menu>
            <Menu mnemonicParsing="false" text="Help">
                <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
