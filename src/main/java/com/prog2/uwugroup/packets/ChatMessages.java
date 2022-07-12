@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ChatMessages {
-    private final ObservableList<MessagePacket> chat = FXCollections.emptyObservableList();
+    private final ObservableList<MessagePacket> chat = FXCollections.observableArrayList();
     public ChatMessages() {}
     public boolean add(MessagePacket message){
         if(!chat.contains(message)){
