@@ -139,7 +139,7 @@ public class StartStageControl implements Initializable {
 
         ChoiceDialog dialog = new ChoiceDialog(dialogData.get(0), dialogData);
         dialog.setTitle(programTitle);
-        dialog.setHeaderText("Select your Port");
+        dialog.setHeaderText("Please select Port for new server.");
 
         Optional<Integer> result = dialog.showAndWait();
         int selected = 8080;

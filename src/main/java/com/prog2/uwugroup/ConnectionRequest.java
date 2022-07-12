@@ -19,8 +19,7 @@ public class ConnectionRequest {
         try {
             MessagePacket message = new MessagePacket(InetAddress.getLocalHost(),"Connect?", "Bob");
             chatMessages.add(message);
-            ChatPacket cp = new ChatPacket(message.toString());
-            client.sendObject(cp);  //sendObject(chatMessages)
+            client.sendObject(chatMessages);
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
