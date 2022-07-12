@@ -302,6 +302,7 @@ public class StartStageControl implements Initializable {
     }
 
     public static void chatWasAccepted() {
-        //todo here load vom accept
+//        connectionAccepted = true;
+        ChatStart.startE(true);
     }
 }
