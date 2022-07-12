@@ -1,6 +1,7 @@
 package com.prog2.uwugroup;
 
 import com.prog2.uwugroup.packets.ChatMessages;
+import com.prog2.uwugroup.packets.ChatPacket;
 import com.prog2.uwugroup.packets.MessagePacket;
 import com.prog2.uwugroup.packets.StringPacket;
 import javafx.event.ActionEvent;
@@ -18,7 +19,8 @@ public class ConnectionRequest {
         try {
             MessagePacket message = new MessagePacket(InetAddress.getLocalHost(),"Connect?", "Bob");
             chatMessages.add(message);
-            client.sendObject(chatMessages);
+            ChatPacket cp = new ChatPacket(message.toString());
+            client.sendObject(cp);  //sendObject(chatMessages)
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
