@@ -3,67 +3,33 @@ package com.prog2.uwugroup;
 import javafx.application.Platform;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.function.Consumer;
 
-public class Server implements Runnable{
+public class Server extends NetworkConnection{
 
     private int port;
-    private ServerSocket serverSocket;
-    private boolean running = false;
 
-    public Server(int port) {
+    public Server(int port, Consumer<Serializable> onReceiveCallback) {
+        super(onReceiveCallback);
         this.port = port;
-        try {
-            serverSocket = new ServerSocket(port);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void changePort(int port){
-        this.port = port;
-//        try {
-//            shutDown();
-//            serverSocket.close();
-//            serverSocket = new ServerSocket(port);
-//            run();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } todo fix me
-    }
-
-
-    public void start(){
-        new Thread(this).start();
     }
 
     @Override
-    public void run() {
-        running = true;
-
-        while(running){
-            try{
-                Socket socket = serverSocket.accept();
-                initSocket(socket);
-            } catch(IOException e){
-                e.printStackTrace();
-            }
-        }
-        shutDown();
+    protected boolean isServer() {
+        return true;    //weil es ein server ist
     }
 
-    private void initSocket(Socket socket){
-        Connection connection = new Connection(socket);
-        new Thread(connection).start();
+    @Override
+    protected String getIP() {
+        return null;      //ist egal, deswegen darf hier null zurückgegeben werden
     }
 
-    public void shutDown(){
-        running = false;
-        try{
-            serverSocket.close();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+    @Override
+    protected int getPort() {
+        return port;
     }
 
 }

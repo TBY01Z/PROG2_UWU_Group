@@ -29,7 +29,6 @@ public class ChatController implements Initializable {
         ChatPacket message = new ChatPacket(msg);
         textArea.appendText(msgFormatter(message.getContent()));
         textField.clear();
-        updateTextArea();
     }
 
     public String msgFormatter(String msg){
@@ -37,9 +36,6 @@ public class ChatController implements Initializable {
         return this.senderIdentity + ": " + sb.append("\n\n");
     }
 
-    public void updateTextArea(){
-        textArea.appendText(msgFormatter(ChatPacket.getContent()));
-    }
 
     public String getSenderIdentity(){
         return senderIdentity;
