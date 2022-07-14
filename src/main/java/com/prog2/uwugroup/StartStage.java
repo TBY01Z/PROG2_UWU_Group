@@ -13,13 +13,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class StartStage extends Application {
-    private boolean isServer = false;   //hier wird bestimmt ob man server oder client ist
+    private boolean isServer = true;   //hier wird bestimmt ob man server oder client ist
     //TODO: am besten im main menu nen button machen, mit dem man hosten oder joinen kann
 
     @FXML
-    private TextArea messages;
+    private TextArea messages = new TextArea();
     @FXML
-    private TextField input;
+    private TextField input = new TextField();
     private NetworkConnection connection = isServer ? createServer() : createClient();
 
     @Override
