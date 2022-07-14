@@ -47,7 +47,7 @@ public class StartStageControl implements Initializable {
 
     public void onConnection(ActionEvent event) throws UnknownHostException {
         ConnectionRequest request = new ConnectionRequest(ipField1.getText() + "." + ipField2.getText() + "." + ipField3.getText() + "." + ipField4.getText(), getPort(),event);
-
+        ChatStart.startE(connectionAccepted);
     }
     private static ActionEvent event;
     public static void setEvent(ActionEvent localEvent){
