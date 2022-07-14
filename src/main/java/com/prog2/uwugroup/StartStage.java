@@ -49,7 +49,7 @@ public class StartStage extends Application {
         try {
             init();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println("Fehler in init");;
         }
         String message = isServer ? "Server: " : "Client: ";
         message += input.getText();
