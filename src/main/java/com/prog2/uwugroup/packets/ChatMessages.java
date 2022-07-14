@@ -1,11 +1,9 @@
 package com.prog2.uwugroup.packets;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ChatMessages implements Serializable {
 
