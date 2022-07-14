@@ -34,6 +34,11 @@ public class StartStage extends Application {
         stage.setTitle("UWU GRUPPE");
         stage.setScene(scene);
         stage.show();
+        try {
+            init();
+        } catch (Exception e) {
+            System.out.println("Fehler in init");;
+        }
     }
 
     @Override
@@ -46,11 +51,6 @@ public class StartStage extends Application {
     }
 
     public void sendMessage(ActionEvent event){
-        try {
-            init();
-        } catch (Exception e) {
-            System.out.println("Fehler in init");;
-        }
         String message = isServer ? "Server: " : "Client: ";
         message += input.getText();
         input.clear();
