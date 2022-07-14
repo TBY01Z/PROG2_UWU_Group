@@ -40,11 +40,9 @@ public abstract class NetworkConnection {
         @Override
         public void run(){
             try(ServerSocket server = isServer() ? new ServerSocket(getPort()) : null;  //wenn ServerSocket "server" server ist, instanziiert neue ServerSocket mit Port, sonst null
-                Socket socket = isServer() ? server.accept() : new Socket(getIP(), getPort());  //wenn Socket "socket" ein server ist wird verbindung akzeptiert, sonst neuer Socket mit IP und Port
-                ObjectOutputStream outStream = new ObjectOutputStream(socket.getOutputStream());    //ObjectOutputStream erstellt
-                ObjectInputStream inStream = new ObjectInputStream(socket.getInputStream())){       //ObjectInputStream erstellt
-                this.inStream = inStream;
-                this.outStream = outStream;
+                Socket socket = isServer() ? server.accept() : new Socket(getIP(), getPort())){  //wenn Socket "socket" ein server ist wird verbindung akzeptiert, sonst neuer Socket mit IP und Port{       //ObjectInputStream erstellt
+                this.outStream = new ObjectOutputStream(socket.getOutputStream());
+                this.inStream = new ObjectInputStream(socket.getInputStream());
                 socket.setTcpNoDelay(true);
 
                 while(true){

@@ -1,4 +1,4 @@
-module com.prog.uwugroup {
+module com.prog2.uwugroup {
     requires javafx.controls;
     requires javafx.fxml;
 
