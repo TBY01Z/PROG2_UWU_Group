@@ -17,7 +17,7 @@ public abstract class NetworkConnection {
     }
 
     public void startConnection() throws Exception{
-        connectionThread.start();
+        new Thread(connectionThread).start();
     }
 
     public void send(Serializable data) throws Exception{
