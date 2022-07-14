@@ -1,12 +1,6 @@
 package com.prog2.uwugroup;
 
-import com.prog2.uwugroup.packets.RemovePlayerPacket;
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.*;
 import java.util.function.Consumer;
 
 public class Client extends NetworkConnection {

@@ -66,7 +66,7 @@ public class StartStage extends Application {
     }
 
     private Client createClient(){
-        return new Client("127.0.0.1", 8080, data ->{
+        return new Client("192.168.178.20", 8080, data ->{
             Platform.runLater(() -> {
                 messages.appendText(data.toString() + "\n");
             });

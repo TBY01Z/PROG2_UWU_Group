@@ -1,20 +1,5 @@
 package com.prog2.uwugroup;
 
-import com.prog2.uwugroup.packets.AcceptPacket;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-
-import java.io.IOException;
-import java.net.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
-
 @SuppressWarnings("ALL")
 public class StartStageControl  {   //implements Serializable
 //    private final int IP_MAX_VALUE = 255;
