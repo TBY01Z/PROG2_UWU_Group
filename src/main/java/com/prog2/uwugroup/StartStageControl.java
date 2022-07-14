@@ -1,5 +1,6 @@
 package com.prog2.uwugroup;
 
+import com.prog2.uwugroup.packets.AcceptPacket;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -64,7 +65,6 @@ public class StartStageControl implements Initializable {
         if (button == ButtonType.OK) {
             System.out.println("computer sagt ja");
             connectionAccepted = true;
-
         } else {
             System.out.println("computer sagt nein");
             connectionAccepted = false;
@@ -73,14 +73,14 @@ public class StartStageControl implements Initializable {
         ChatStart.startE(connectionAccepted);
     }
 
-    public static void connectionRequestHandler(ActionEvent event){
-        if(connectionAccepted){
-            MyIO.loadXML(event, "ChatScene.fxml");
-        } else {
-            System.out.println("ABGEBROCHEN ODER FEHLGESCHLAGEN");
-            StartStage.server().shutDown();
-        }
-    }
+//    public static void connectionRequestHandler(ActionEvent event){
+//        if(connectionAccepted){
+//            MyIO.loadXML(event, "ChatScene.fxml");
+//        } else {
+//            System.out.println("ABGEBROCHEN ODER FEHLGESCHLAGEN");
+//            StartStage.server().shutDown();
+//        }
+//    }
 
     public void showIP(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -261,5 +261,11 @@ public class StartStageControl implements Initializable {
         Optional<String> result = Optional.ofNullable(cc.getSenderIdentity());
         Optional<String> resultUser = Optional.ofNullable(usernameField.getText());
         System.out.println(result + "   " + resultUser); //nur fuer testzwecke //TODO:REMOVE ME! (mit den Optionalen)
+    }
+    public static boolean getConnectionAccepted(){
+        return connectionAccepted;
+    }
+    public void setConnectionAccepted(boolean connectionAccepted){
+        this.connectionAccepted = connectionAccepted;
     }
 }

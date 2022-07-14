@@ -1,5 +1,6 @@
 package com.prog2.uwugroup;
 
+import com.prog2.uwugroup.packets.AcceptPacket;
 import com.prog2.uwugroup.packets.StringPacket;
 import javafx.event.ActionEvent;
 
@@ -10,5 +11,9 @@ public class ConnectionRequest {
         client.connect();
         StringPacket sw = new StringPacket(event);
         client.sendObject(sw);
+        if(StartStageControl.getConnectionAccepted()){
+            AcceptPacket accepted = new AcceptPacket();
+            client.sendObject(accepted);
+        }
     }
 }
