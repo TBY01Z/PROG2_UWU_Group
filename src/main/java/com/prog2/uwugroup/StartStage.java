@@ -46,6 +46,11 @@ public class StartStage extends Application {
     }
 
     public void sendMessage(ActionEvent event){
+        try {
+            init();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         String message = isServer ? "Server: " : "Client: ";
         message += input.getText();
         input.clear();
