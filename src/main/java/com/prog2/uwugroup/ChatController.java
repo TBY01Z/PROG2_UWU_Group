@@ -17,7 +17,7 @@ public class ChatController implements Initializable {
     @FXML
     private TextField textField = new TextField();
     private String msg;
-    private String senderIdentity = "Anon";
+    private String senderIdentity;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -29,11 +29,16 @@ public class ChatController implements Initializable {
         ChatPacket message = new ChatPacket(msg);
         textArea.appendText(msgFormatter(message.getContent()));
         textField.clear();
+        updateTextArea();
     }
 
     public String msgFormatter(String msg){
         StringBuilder sb = new StringBuilder(msg);
         return this.senderIdentity + ": " + sb.append("\n\n");
+    }
+
+    public void updateTextArea(){
+        textArea.appendText(msgFormatter(ChatPacket.getContent()));
     }
 
     public String getSenderIdentity(){
