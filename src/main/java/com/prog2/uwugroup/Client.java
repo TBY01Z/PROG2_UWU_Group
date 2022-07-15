@@ -3,7 +3,7 @@ package com.prog2.uwugroup;
 import java.io.Serializable;
 import java.util.function.Consumer;
 
-public class Client extends NetworkConnection {
+public class Client extends NetworkConnection{
 
     private String ip;
     private int port;
@@ -16,7 +16,7 @@ public class Client extends NetworkConnection {
 
     @Override
     protected boolean isServer() {
-        return false;   //false, da das hier kein server ist.
+        return false;
     }
 
     @Override
