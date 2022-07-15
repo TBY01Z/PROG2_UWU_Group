@@ -17,7 +17,8 @@ public abstract class NetworkConnection {
     }
 
     public void startConnection() throws Exception{
-        new Thread(connectionThread).start();
+//        new Thread(connectionThread).start();
+        connectionThread.start();
     }
 
     public void send(Serializable data) throws Exception{
@@ -47,6 +48,7 @@ public abstract class NetworkConnection {
 
                 this.socket = socket;
                 this.outStream = outStream;
+                this.inStream = inStream;
                 socket.setTcpNoDelay(true);
 
                 while(true){
