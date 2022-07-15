@@ -76,7 +76,7 @@ public class AlternativeStartStage extends Application {
     }
 
     private Client createClient() {
-        return new Client("192.168.178.36", 8080, data -> {      //hier ip vom server eingeben, wenn man client ist
+        return new Client("127.0.0.1", 8080, data -> {      //hier ip vom server eingeben, wenn man client ist
             Platform.runLater(() -> {
                 messages.appendText(data.toString() + "\n");
             });
