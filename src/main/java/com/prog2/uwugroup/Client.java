@@ -6,7 +6,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class NewClient {
+public class Client {
 
     //    private TextArea messages = new TextArea();
     private int messageID = 0;
@@ -16,7 +16,7 @@ public class NewClient {
     private BufferedWriter bufferedWriter;
     private String username;
 
-    public NewClient(Socket socket, String username) {
+    public Client(Socket socket, String username) {
         try {
             this.socket = socket;
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));

@@ -29,9 +29,9 @@ public class CreateClientUI extends Application {
         stage.setTitle("UWU GRUPPE");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String[] args) {
+    }    public static void main(String[] args) {
         launch(args);
     }
+
+
 }
