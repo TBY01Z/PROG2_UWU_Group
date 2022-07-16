@@ -1,10 +1,15 @@
 package com.prog2.uwugroup;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class NewServer {
+public class NewServer extends Application {
 
     private ServerSocket serverSocket;
 
@@ -37,10 +42,34 @@ public class NewServer {
     }
 
     public static void main(String[] args) throws IOException {
+        launch(args);
         ServerSocket serverSocket = new ServerSocket(8080); //listening for clients on 8080
         //TODO: REMOVE NAKED NUMBER!
         NewServer server = new NewServer(serverSocket);
         server.startServer();
     }
 
+    /**
+     * The main entry point for all JavaFX applications.
+     * The start method is called after the init method has returned,
+     * and after the system is ready for the application to begin running.
+     *
+     * <p>
+     * NOTE: This method is called on the JavaFX Application Thread.
+     * </p>
+     *
+     * @param primaryStage the primary stage for this application, onto which
+     *                     the application scene can be set.
+     *                     Applications may create other stages, if needed, but they will not be
+     *                     primary stages.
+     * @throws Exception if something goes wrong
+     */
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(NewServer.class.getResource("StartStage.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 580);
+        stage.setTitle("UWU GRUPPE");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

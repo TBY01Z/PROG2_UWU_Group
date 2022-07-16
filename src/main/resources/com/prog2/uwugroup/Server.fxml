@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prog2.uwugroup.ServerControl">
+   <children>
+      <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="800.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Quit">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#closeServer" text="Close Server" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Server Info's">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#kickPlayer" text="Kick" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#aboutInfo" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label layoutX="386.0" layoutY="427.0" text="Own IP:" />
+      <TableView layoutX="380.0" layoutY="27.0" prefHeight="364.0" prefWidth="332.0">
+        <columns>
+          <TableColumn prefWidth="329.60003662109375" text="C1" />
+        </columns>
+      </TableView>
+      <CheckBox layoutX="427.0" layoutY="455.0" mnemonicParsing="false" onAction="#servereStart" text="Server start?" />
+      <Label layoutX="457.0" layoutY="427.0" text="255.255.255.255" />
+      <ChoiceBox layoutX="554.0" layoutY="423.0" prefWidth="150.0" />
+      <Label layoutX="544.0" layoutY="427.0" text=":" />
+   </children>
+</AnchorPane>
