@@ -66,15 +66,4 @@ public class NewClient {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your username for the Chat: ");
-        String username = scanner.nextLine();
-        Socket socket = new Socket("localhost", 8080);
-        NewClient client = new NewClient(socket, username);
-        client.listenForMessage();
-        client.sendMessage("");
-    }
-
 }
