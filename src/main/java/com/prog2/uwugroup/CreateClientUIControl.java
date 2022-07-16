@@ -219,7 +219,7 @@ public class CreateClientUIControl implements Initializable {
     public void sendMessage(ActionEvent event) {
         String msg = inputText.getText();
         messages.appendText(userName + " :\n");
-        messages.appendText(msg);
+        messages.appendText(msg + "\n");
         System.out.println(msg);
         client.sendMessage(msg, this);
     }
