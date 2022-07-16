@@ -36,6 +36,9 @@ public class CreateClientUIControl implements Initializable {
     private NewClient client;
 
     public void appendChat(String msgFromChat) {
+
+
+
         messages.appendText(msgFromChat+"\n\n");
     }
 
@@ -236,6 +239,7 @@ public class CreateClientUIControl implements Initializable {
         client.sendFile(selectedFile);
 
     }
+
 
 
 }

@@ -80,6 +80,7 @@ public class NewClient {
 //        }
     }
 
+   
     public void listenForMessage() {
         new Thread(new Runnable() {
             @Override
@@ -88,6 +89,7 @@ public class NewClient {
                 while (socket.isConnected()) {
                     try {
                         msgFromChat = bufferedReader.readLine();
+
 
                         StringBuilder data = new StringBuilder();
                         String line = "";
