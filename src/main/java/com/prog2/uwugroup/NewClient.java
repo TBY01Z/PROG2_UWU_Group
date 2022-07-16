@@ -54,7 +54,7 @@ public class NewClient {
         }
     }
 
-    public void listenForMessage2() {
+    public void listenForMessage() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -71,7 +71,7 @@ public class NewClient {
         }).start();
     }
 
-    public void listenForMessage() {
+    public void listenForMessage2() {
         new Thread(new Runnable() {
             @Override
             public void run() {
