@@ -1,11 +1,5 @@
 package com.prog2.uwugroup;
 
-import javafx.application.Application;
-import javafx.scene.Parent;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
@@ -30,19 +24,11 @@ public class NewClient {
         }
     }
 
-    public void sendMessage(){
+    public void sendMessage(String message){
         try{
-            bufferedWriter.write(username);
-            bufferedWriter.newLine();
-            bufferedWriter.flush();
-
-            Scanner scanner = new Scanner(System.in);
-            while(socket.isConnected()){
-                String messageToSend = scanner.nextLine();
-                bufferedWriter.write(username + ": " + messageToSend);
+                bufferedWriter.write(username + ": \n" + message);
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
-            }
         } catch(IOException e){
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
@@ -56,7 +42,7 @@ public class NewClient {
                 while(socket.isConnected()){
                     try {
                         msgFromChat = bufferedReader.readLine();
-                        System.out.println(msgFromChat);
+                        CreateClientUIControl.appendChat(msgFromChat);
                     } catch (IOException e){
                         closeEverything(socket, bufferedReader, bufferedWriter);
                     }
@@ -88,7 +74,7 @@ public class NewClient {
         Socket socket = new Socket("localhost", 8080);
         NewClient client = new NewClient(socket, username);
         client.listenForMessage();
-        client.sendMessage();
+        client.sendMessage("");
     }
 
 }

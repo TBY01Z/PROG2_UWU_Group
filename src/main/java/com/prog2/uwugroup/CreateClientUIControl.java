@@ -1,5 +1,7 @@
 package com.prog2.uwugroup;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,10 +20,22 @@ import java.util.ResourceBundle;
 public class CreateClientUIControl implements Initializable {
     @FXML
     private static Button attachment = new Button("+");
+    @FXML
+    private static TextArea messages = new TextArea();
+    @FXML
+    private static TextField input = new TextField();
+    private final int IP_MAX_VALUE = 255;
+    private final int IP_MIN_VALUE = 0;
+    private boolean[] ipcheck = {false, false, false, false};
     private String title = "UWU GRUPPE";
     private String userName;
-    private InetAddress ip;
+
     private NewClient client;
+
+    public static void appendChat(String msgFromChat) {
+        messages.appendText(msgFromChat);
+    }
+
     private String setUserName(){
         String value = "username";
         TextInputDialog dialog;
@@ -45,18 +59,114 @@ public class CreateClientUIControl implements Initializable {
 
         Label label1 = new Label("IP: ");
         Label label2 = new Label(":");
-        TextField text1 = new TextField();
-        TextField text2 = new TextField();
-        TextField text3 = new TextField();
-        TextField text4 = new TextField();
+        TextField ipField1 = new TextField();
+        TextField ipField2 = new TextField();
+        TextField ipField3 = new TextField();
+        TextField ipField4 = new TextField();
         TextField port = new TextField();
+        ipField1.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.matches("\\d+")) {
+                    int change = Integer.parseInt(newValue);
+                    if (!(change > IP_MIN_VALUE && change <= IP_MAX_VALUE)) {
+                        ipField1.setText(oldValue);
+                    } else {
+                        ipcheck[0] = true;
+
+                    }
+                } else if (!newValue.isEmpty()) {
+                    ipField1.setText(oldValue);
+                    ipcheck[0] = false;
+
+                } else {
+                    ipcheck[0] = false;
+
+                }
+            }
+        });
+        //noinspection DuplicatedCode
+        ipField2.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.matches("\\d+")) {
+                    int change = Integer.parseInt(newValue);
+                    if (!(change >= IP_MIN_VALUE && change <= IP_MAX_VALUE)) {
+                        ipField2.setText(oldValue);
+                    } else {
+                        ipcheck[1] = true;
+
+                    }
+                } else if (!newValue.isEmpty()) {
+                    ipField2.setText(oldValue);
+                    ipcheck[1] = false;
+
+                } else {
+                    ipcheck[1] = false;
+
+                }
+            }
+        });
+        //noinspection DuplicatedCode
+        ipField3.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.matches("\\d+")) {
+                    int change = Integer.parseInt(newValue);
+                    if (!(change >= IP_MIN_VALUE && change <= IP_MAX_VALUE)) {
+                        ipField3.setText(oldValue);
+                    } else {
+                        ipcheck[2] = true;
+
+                    }
+                } else if (!newValue.isEmpty()) {
+                    ipField3.setText(oldValue);
+                    ipcheck[2] = false;
+
+                } else {
+                    ipcheck[2] = false;
+
+                }
+            }
+        });
+        ipField4.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.matches("\\d+")) {
+                    int change = Integer.parseInt(newValue);
+                    if (!(change > IP_MIN_VALUE && change < IP_MAX_VALUE)) {
+                        ipField4.setText(oldValue);
+                    } else {
+                        ipcheck[3] = true;
+
+                    }
+                } else if (!newValue.isEmpty()) {
+                    ipField4.setText(oldValue);
+                    ipcheck[3] = false;
+
+                } else {
+                    ipcheck[3] = false;
+
+                }
+            }
+        });
+        port.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.matches("\\d+")) {
+                    int change = Integer.parseInt(newValue);
+                } else if (!newValue.isEmpty()) {
+                    ipField2.setText(oldValue);
+                }
+            }
+        });
 
         GridPane grid = new GridPane();
         grid.add(label1, 1, 1);
-        grid.add(text1, 2, 1);
-        grid.add(text2, 3, 1);
-        grid.add(text3, 4, 1);
-        grid.add(text4, 5, 1);
+        grid.add(ipField1, 2, 1);
+        grid.add(ipField2, 3, 1);
+        grid.add(ipField3, 4, 1);
+        grid.add(ipField4, 5, 1);
         grid.add(label2, 6, 1);
         grid.add(port, 7, 1);
         dialog.getDialogPane().setContent(grid);
@@ -70,7 +180,7 @@ public class CreateClientUIControl implements Initializable {
 
                 if (b == buttonTypeOk) {
 
-                    return new IP(Integer.parseInt(text1.getText()), Integer.parseInt(text2.getText()), Integer.parseInt(text3.getText()), Integer.parseInt(text4.getText()), Integer.parseInt(port.getText()));
+                    return new IP(Integer.parseInt(ipField1.getText()), Integer.parseInt(ipField2.getText()), Integer.parseInt(ipField3.getText()), Integer.parseInt(ipField4.getText()), Integer.parseInt(port.getText()));
                 }
 
                 return null;
@@ -102,9 +212,11 @@ public class CreateClientUIControl implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         userName = setUserName();
         setIP();
+        client.listenForMessage();
     }
 
     public void addFile(ActionEvent event) {
-
+        String msg = input.getText();
+        client.sendMessage(msg);
     }
 }
