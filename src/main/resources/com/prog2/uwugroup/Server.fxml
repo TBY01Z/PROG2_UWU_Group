@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prog2.uwugroup.ServerControl">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prog2.uwugroup.NewServer">
    <children>
       <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="800.0">
         <menus>
@@ -14,25 +20,26 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Server Info's">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#kickPlayer" text="Kick" />
+              <MenuItem mnemonicParsing="false" text="Kick" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#aboutInfo" text="About" />
+                  <MenuItem mnemonicParsing="false" onAction="#portSelect" text="Select Port" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="386.0" layoutY="427.0" text="Own IP:" />
-      <TableView layoutX="380.0" layoutY="27.0" prefHeight="364.0" prefWidth="332.0">
+      <Label layoutX="386.0" layoutY="427.0" text="Server IP:" />
+      <TableView fx:id="userTable" layoutX="380.0" layoutY="27.0" prefHeight="364.0" prefWidth="332.0">
         <columns>
           <TableColumn prefWidth="329.60003662109375" text="C1" />
         </columns>
       </TableView>
-      <CheckBox layoutX="427.0" layoutY="455.0" mnemonicParsing="false" onAction="#servereStart" text="Server start?" />
-      <Label layoutX="457.0" layoutY="427.0" text="255.255.255.255" />
-      <ChoiceBox layoutX="554.0" layoutY="423.0" prefWidth="150.0" />
+      <CheckBox layoutX="427.0" layoutY="455.0" mnemonicParsing="false" onAction="#startServer" text="Server start?" />
+      <Label fx:id="ipLabel" layoutX="457.0" layoutY="427.0" text="255.255.255.255" />
       <Label layoutX="544.0" layoutY="427.0" text=":" />
+      <Label fx:id="portLabel" layoutX="547.0" layoutY="427.0" prefHeight="17.0" prefWidth="52.0" />
    </children>
 </AnchorPane>
