@@ -15,6 +15,9 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static com.prog2.uwugroup.ClientHandler.clientHandlers;
@@ -25,13 +28,13 @@ public class ServerControl implements Initializable {
     private TableView userTable = new TableView();
     @FXML
     private Label ipLabel = new Label();
-
-    private ObservableList portArray = FXCollections.observableArrayList();//{8080, 8484, 2564, 2556};
-
-    private ObservableList<ObservableList> choiceData = FXCollections.observableArrayList(portArray);
+    private final Integer[] arrayData = {2564, 2556, 8080, 8443, 9900, 9990};
+    private final List<Integer> dialogData = Arrays.asList(arrayData);
+    private ObservableList<Integer> choiceData = FXCollections.observableList(dialogData);
     private ObservableList<ClientHandler> clientsList = FXCollections.observableArrayList(clientHandlers);
+
     @FXML
-    private ChoiceBox portChoiceBox = new ChoiceBox(choiceData.get(0));
+    private ChoiceBox portChoiceBox = new ChoiceBox(choiceData);
 
     private static Integer selectedPort;
 
@@ -47,7 +50,8 @@ public class ServerControl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userTable.setItems(clientsList);
-        portArray.addAll(8080,8484,2564,2556);
+
+
         try {
             ipLabel.setText(InetAddress.getLocalHost().getHostAddress());
             System.out.println(InetAddress.getLocalHost().getHostAddress());    //TODO: remove later!
