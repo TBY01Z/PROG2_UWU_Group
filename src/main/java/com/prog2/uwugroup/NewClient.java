@@ -36,7 +36,7 @@ public class NewClient {
                 bufferedWriter.flush();
             }
             String messageToSend = message;
-            bufferedWriter.write(username + ": \n" + messageToSend);
+            bufferedWriter.write(messageToSend);
             bufferedWriter.newLine();
             bufferedWriter.flush();
             messageID ++;
