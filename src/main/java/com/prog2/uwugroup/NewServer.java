@@ -1,17 +1,42 @@
 package com.prog2.uwugroup;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class NewServer extends Application {
+import static com.prog2.uwugroup.ClientHandler.clientHandlers;
+
+public class NewServer extends Application implements Initializable {
 
     private ServerSocket serverSocket;
+    @FXML
+    private Label portLabel = new Label();
+    @FXML
+    private TableView userTable = new TableView();
+    @FXML
+    private Label ipLabel = new Label();
+    private final Integer[] arrayData = {2564, 2556, 8080, 8443, 9900, 9990};
+    private final List<Integer> dialogData = Arrays.asList(arrayData);
+    private ObservableList<Integer> choiceData = FXCollections.observableList(dialogData);
+    private ObservableList<ClientHandler> clientsList = FXCollections.observableArrayList(clientHandlers);
+    private static Integer selectedPort;
 
     public NewServer(ServerSocket serverSocket){
 
@@ -19,6 +44,48 @@ public class NewServer extends Application {
     }
     public NewServer(){
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        userTable.setItems(clientsList);
+
+        try {
+            ipLabel.setText(InetAddress.getLocalHost().getHostAddress());
+            System.out.println(InetAddress.getLocalHost().getHostAddress());    //TODO: remove later!
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void portSelect(ActionEvent event){
+        List<Integer> dialogData = Arrays.asList(arrayData);
+
+        ChoiceDialog dialog = new ChoiceDialog(dialogData.get(0), dialogData);
+        dialog.setTitle("UWU Gruppe");
+        dialog.setHeaderText("Select your Port");
+
+        Optional<Integer> result = dialog.showAndWait();
+        int selected = 8080;
+
+        if (result.isPresent()) {
+
+            selected = result.get();
+        }
+
+        selectedPort = selected;
+        //StartStage.server().changePort(networkPort);
+        portLabel.setText(selectedPort.toString());
+    }
+
+    public void aboutInfo(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("UWU Gruppe");
+        alert.setHeaderText("About");
+        String s = "Dies ist eine Chat-Anwendung, geschrieben von Niclas Rieckers und Mark Fischer." +
+                "Diese Anwendung wurde im Rahmen des Moduls PROG2 entwickelt";//TODO: change about
+        alert.setContentText(s);
+        alert.show();
     }
 
     public void startServer(){

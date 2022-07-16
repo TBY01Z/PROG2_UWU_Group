@@ -5,25 +5,22 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static com.prog2.uwugroup.ClientHandler.clientHandlers;
 
+
 public class ServerControl implements Initializable {
 
+    @FXML
+    private Label portLabel = new Label();
     @FXML
     private TableView userTable = new TableView();
     @FXML
@@ -32,10 +29,6 @@ public class ServerControl implements Initializable {
     private final List<Integer> dialogData = Arrays.asList(arrayData);
     private ObservableList<Integer> choiceData = FXCollections.observableList(dialogData);
     private ObservableList<ClientHandler> clientsList = FXCollections.observableArrayList(clientHandlers);
-
-    @FXML
-    private ChoiceBox portChoiceBox = new ChoiceBox(choiceData);
-
     private static Integer selectedPort;
 
     /**
@@ -50,7 +43,6 @@ public class ServerControl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userTable.setItems(clientsList);
-
 
         try {
             ipLabel.setText(InetAddress.getLocalHost().getHostAddress());
@@ -79,7 +71,23 @@ public class ServerControl implements Initializable {
     }
 
     public void portSelect(ActionEvent event){
-        selectedPort = Integer.valueOf((String) portChoiceBox.getValue());
+        List<Integer> dialogData = Arrays.asList(arrayData);
+
+        ChoiceDialog dialog = new ChoiceDialog(dialogData.get(0), dialogData);
+        dialog.setTitle("UWU Gruppe");
+        dialog.setHeaderText("Select your Port");
+
+        Optional<Integer> result = dialog.showAndWait();
+        int selected = 8080;
+
+        if (result.isPresent()) {
+
+            selected = result.get();
+        }
+
+        selectedPort = selected;
+        //StartStage.server().changePort(networkPort);
+        portLabel.setText(selectedPort.toString());
     }
 
     public void aboutInfo(ActionEvent event) {
