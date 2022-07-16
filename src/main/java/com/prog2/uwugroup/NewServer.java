@@ -1,6 +1,7 @@
 package com.prog2.uwugroup;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,7 +59,7 @@ public class NewServer extends Application implements Initializable {
         }
     }
 
-    public void portSelect(ActionEvent event){
+    public void portSelect(ActionEvent event) throws IOException {
         List<Integer> dialogData = Arrays.asList(arrayData);
 
         ChoiceDialog dialog = new ChoiceDialog(dialogData.get(0), dialogData);
@@ -74,8 +75,10 @@ public class NewServer extends Application implements Initializable {
         }
 
         selectedPort = selected;
-        //StartStage.server().changePort(networkPort);
         portLabel.setText(selectedPort.toString());
+        ServerSocket serverSocket = new ServerSocket(selectedPort); //listening for clients on 8080
+        this.serverSocket = serverSocket;
+        NewServer server = new NewServer(serverSocket);
     }
 
     public void aboutInfo(ActionEvent event) {
@@ -114,10 +117,6 @@ public class NewServer extends Application implements Initializable {
 
     public static void main(String[] args) throws IOException {
         launch(args);
-        ServerSocket serverSocket = new ServerSocket(8080); //listening for clients on 8080
-        //TODO: REMOVE NAKED NUMBER!
-        NewServer server = new NewServer(serverSocket);
-        server.startServer();
     }
 
     /**
