@@ -33,7 +33,7 @@ public class CreateClientUIControl implements Initializable {
     private String title = "UWU GRUPPE";
     private String userName;
 
-    private NewClient client;
+    private Client client;
 
     public void appendChat(String msgFromChat) {
         messages.appendText(msgFromChat+"\n\n");
@@ -196,7 +196,7 @@ public class CreateClientUIControl implements Initializable {
 
             IP workingIP = result.get();
             try {
-                client = new NewClient(new Socket(String.valueOf(workingIP.firstOctet()) +'.'+ String.valueOf(workingIP.secondOctet()) +'.'+ String.valueOf(workingIP.thirdOctet()) +'.'+ String.valueOf(workingIP.fourthOctet()), workingIP.port()), userName);
+                client = new Client(new Socket(String.valueOf(workingIP.firstOctet()) +'.'+ String.valueOf(workingIP.secondOctet()) +'.'+ String.valueOf(workingIP.thirdOctet()) +'.'+ String.valueOf(workingIP.fourthOctet()), workingIP.port()), userName);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

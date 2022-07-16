@@ -1,7 +1,6 @@
 package com.prog2.uwugroup;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,7 +22,7 @@ import java.util.ResourceBundle;
 
 import static com.prog2.uwugroup.ClientHandler.clientHandlers;
 
-public class NewServer extends Application implements Initializable{
+public class ServerStageStart extends Application implements Initializable{
 
     private ServerSocket serverSocket;
     @FXML
@@ -35,18 +33,19 @@ public class NewServer extends Application implements Initializable{
     private final List<Integer> dialogData = Arrays.asList(arrayData);
     private ObservableList<Integer> choiceData = FXCollections.observableList(dialogData);
     private ObservableList<ClientHandler> clientsList = FXCollections.observableArrayList(clientHandlers);
-    private static Integer selectedPort;
+    private static Integer selectedPort = 8080;
 
-    public NewServer(ServerSocket serverSocket){
+    public ServerStageStart(ServerSocket serverSocket){
 
         this.serverSocket = serverSocket;
     }
-    public NewServer(){
+    public ServerStageStart(){
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        portLabel.setText(String.valueOf(selectedPort));
         try {
             ipLabel.setText(InetAddress.getLocalHost().getHostAddress());
         } catch (UnknownHostException e) {
@@ -71,7 +70,7 @@ public class NewServer extends Application implements Initializable{
 
         selectedPort = selected;
         portLabel.setText(selectedPort.toString());
-        this.serverSocket = new ServerSocket(selectedPort);;
+
     }
 
     public void aboutInfo(ActionEvent event) {
@@ -86,6 +85,7 @@ public class NewServer extends Application implements Initializable{
 
     public void startServer(){
         try{
+            this.serverSocket = new ServerSocket(selectedPort);
             Server server = new Server(serverSocket);
             Thread thread0 = new Thread(server);
             thread0.start();
@@ -125,7 +125,7 @@ public class NewServer extends Application implements Initializable{
      */
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(NewServer.class.getResource("Server.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ServerStageStart.class.getResource("Server.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 580);
         stage.setTitle("UWU GRUPPE");
         stage.setScene(scene);
