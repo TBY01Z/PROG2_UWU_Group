@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class NewClient {
 
     //    private TextArea messages = new TextArea();
+    private int messageID = 0;
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
@@ -27,11 +28,16 @@ public class NewClient {
 
     public void sendMessage(String message) {
         try {
-            System.out.println(message);
-                String messageToSend = message;
-                bufferedWriter.write(username + ": " + messageToSend);
+            if (messageID == 0) {
+                bufferedWriter.write(username); // TODO: 16.07.2022 ersten drei Zeilen von sendFile und sendMessage zusammen ausführen
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
+            }
+            String messageToSend = message;
+            bufferedWriter.write(username + ": \n" + messageToSend);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+            messageID ++;
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
@@ -99,7 +105,8 @@ public class NewClient {
                             System.out.println("imported");
 
                         } else {
-                            CreateClientUIControl.appendChat(msgFromChat);
+                            CreateClientUIControl control = new CreateClientUIControl();
+                            control.appendChat(msgFromChat);
                         }
 
 

@@ -17,11 +17,13 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CreateClientUIControl implements Initializable {
+    public CreateClientUIControl() {
+    }
 
     @FXML
-    private static TextArea messages = new TextArea(" ");
+    private TextArea messages = new TextArea(" ");
     @FXML
-    private static TextField input = new TextField();
+    private TextField inputText = new TextField();
     private final int IP_MAX_VALUE = 255;
     private final int IP_MIN_VALUE = 0;
     private boolean[] ipcheck = {false, false, false, false};
@@ -30,7 +32,7 @@ public class CreateClientUIControl implements Initializable {
 
     private NewClient client;
 
-    public static void appendChat(String msgFromChat) {
+    public void appendChat(String msgFromChat) {
         System.out.println(msgFromChat);
         messages.appendText(msgFromChat);
     }
@@ -215,7 +217,7 @@ public class CreateClientUIControl implements Initializable {
     }
 
     public void sendMessage(ActionEvent event) {
-        String msg = input.getText();
+        String msg = inputText.getText();
         messages.appendText(userName + " :\n");
         messages.appendText(msg);
         System.out.println(msg);
