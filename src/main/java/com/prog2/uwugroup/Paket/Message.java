@@ -14,5 +14,15 @@ public class Message implements Serializable {
         this.id = id;
     }
 
+    public String message() {
+        return message;
+    }
 
+    public InetAddress sender() {
+        return sender;
+    }
+
+    public int id() {
+        return id;
+    }
 }
