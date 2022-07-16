@@ -97,7 +97,7 @@ public class NewClient {
                             System.out.println("imported");
 
                         } else {
-                            System.out.println(msgFromChat);
+                            CreateClientUIControl.appendChat(msgFromChat);
                         }
 
 
