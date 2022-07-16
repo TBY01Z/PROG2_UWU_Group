@@ -62,7 +62,7 @@ public class NewClient {
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
-    }
+
 
 
 
