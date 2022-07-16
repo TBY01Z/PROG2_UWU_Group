@@ -220,4 +220,8 @@ public class CreateClientUIControl implements Initializable {
         messages.appendText(msg);
         client.sendMessage(msg);
     }
+
+    public void sendFile(ActionEvent event) {
+
+    }
 }
