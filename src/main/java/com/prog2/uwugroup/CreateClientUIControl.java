@@ -7,9 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
@@ -225,6 +228,14 @@ public class CreateClientUIControl implements Initializable {
     }
 
     public void sendFile(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+
+
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+
+        client.sendFile(selectedFile);
 
     }
+
+
 }

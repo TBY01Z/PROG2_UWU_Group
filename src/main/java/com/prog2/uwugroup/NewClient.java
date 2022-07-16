@@ -45,7 +45,7 @@ public class NewClient {
         }
     }
 
-    public void sendFile(String msg) {
+    public void sendFile(File file) {
 
         try {
 
@@ -55,14 +55,14 @@ public class NewClient {
             bufferedWriter.flush();
 
             Scanner scanner = new Scanner(System.in);
-            while (socket.isConnected()) {
-                String address = scanner.nextLine();
-                String fileName = scanner.nextLine();
+            //while (socket.isConnected()) {
+                String address = file.getAbsolutePath();
+                String fileName = file.getName();
                 bufferedWriter.write(fileHandler.fileToString(address, fileName));
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
                 System.out.println("sent");
-            }
+           // }
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
@@ -105,6 +105,9 @@ public class NewClient {
                             FileHandler fileHandler = new FileHandler();
                             fileHandler.stringToFile(fileName, data.toString());
                             System.out.println("imported");
+
+
+
 
                         } else {
 
