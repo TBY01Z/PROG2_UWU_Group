@@ -221,7 +221,7 @@ public class CreateClientUIControl implements Initializable {
         messages.appendText(userName + " :\n");
         messages.appendText(msg);
         System.out.println(msg);
-        client.sendMessage(msg);
+        client.sendMessage(msg, this);
     }
 
     public void sendFile(ActionEvent event) {

@@ -10,6 +10,7 @@ public class NewClient {
 
     //    private TextArea messages = new TextArea();
     private int messageID = 0;
+    private CreateClientUIControl gui;
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
@@ -26,9 +27,10 @@ public class NewClient {
         }
     }
 
-    public void sendMessage(String message) {
+    public void sendMessage(String message, CreateClientUIControl createClientUIControl) {
         try {
             if (messageID == 0) {
+                gui = createClientUIControl;
                 bufferedWriter.write(username); // TODO: 16.07.2022 ersten drei Zeilen von sendFile und sendMessage zusammen ausführen
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
@@ -105,8 +107,8 @@ public class NewClient {
                             System.out.println("imported");
 
                         } else {
-                            CreateClientUIControl control = new CreateClientUIControl();
-                            control.appendChat(msgFromChat);
+
+                            gui.appendChat(msgFromChat);
                         }
 
 
