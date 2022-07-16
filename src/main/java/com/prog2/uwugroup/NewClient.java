@@ -39,6 +39,7 @@ public class NewClient {
     public void sendFile(String msg) {
 
         try {
+            System.out.println(msg);
             FileHandler fileHandler = new FileHandler();
             bufferedWriter.write(username); // TODO: 16.07.2022 ersten drei Zeilen von sendFile und sendMessage zusammen ausführen
             bufferedWriter.newLine();

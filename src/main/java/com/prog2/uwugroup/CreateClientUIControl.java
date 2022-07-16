@@ -32,6 +32,7 @@ public class CreateClientUIControl implements Initializable {
     private NewClient client;
 
     public static void appendChat(String msgFromChat) {
+        System.out.println(msgFromChat);
         messages.appendText(msgFromChat);
     }
 
