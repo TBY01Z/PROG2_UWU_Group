@@ -25,15 +25,14 @@ public class NewClient {
         }
     }
 
-    public void sendFile() {
+    public void sendMessage(String message) {
         try {
             bufferedWriter.write(username);
             bufferedWriter.newLine();
             bufferedWriter.flush();
 
-            Scanner scanner = new Scanner(System.in);
             while (socket.isConnected()) {
-                String messageToSend = scanner.nextLine();
+                String messageToSend = message;
                 bufferedWriter.write(username + ": " + messageToSend);
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
@@ -43,7 +42,7 @@ public class NewClient {
         }
     }
 
-    public void sendMessage(String msg) {
+    public void sendMessage2(String msg) {
         try {
                 bufferedWriter.write(msg);
                 bufferedWriter.newLine();
