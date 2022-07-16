@@ -78,7 +78,6 @@ public class NewServer extends Application implements Initializable {
         portLabel.setText(selectedPort.toString());
         ServerSocket serverSocket = new ServerSocket(selectedPort); //listening for clients on 8080
         this.serverSocket = serverSocket;
-        NewServer server = new NewServer(serverSocket);
     }
 
     public void aboutInfo(ActionEvent event) {
