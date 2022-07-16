@@ -27,16 +27,10 @@ public class NewClient {
 
     public void sendMessage(String message) {
         try {
-            bufferedWriter.write(username);
-            bufferedWriter.newLine();
-            bufferedWriter.flush();
-
-            while (socket.isConnected()) {
                 String messageToSend = message;
                 bufferedWriter.write(username + ": " + messageToSend);
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
-            }
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
