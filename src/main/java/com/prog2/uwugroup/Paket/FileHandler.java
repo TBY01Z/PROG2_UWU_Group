@@ -6,13 +6,17 @@ import java.io.*;
 public class FileHandler {
 
 
-    public String fileToString(String fileName) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+    public String fileToString(String address, String fileName) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(address));
         StringBuilder data = new StringBuilder();
+        String ls = System.getProperty("line.separator");
+        data.append("start");
+        data.append(ls);
+        data.append(fileName);
+        data.append(ls);
 
         String line = "";
 
-        String ls = System.getProperty("line.separator");
 
         while ((line = reader.readLine()) != null) {
             data.append(line);
@@ -20,6 +24,8 @@ public class FileHandler {
         }
 
         reader.close();
+
+        data.append("end");
 
         return data.toString();
     }
@@ -32,9 +38,5 @@ public class FileHandler {
     }
 
 
-    public static void main(String[] args) throws IOException {
-        FileHandler fileHandler = new FileHandler();
-        System.out.println(fileHandler.fileToString("test.txt"));
-    }
 
 }

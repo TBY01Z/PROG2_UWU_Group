@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class NewClient {
 
-//    private TextArea messages = new TextArea();
+    //    private TextArea messages = new TextArea();
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
@@ -52,10 +52,12 @@ public class NewClient {
 
             Scanner scanner = new Scanner(System.in);
             while (socket.isConnected()) {
+                String address = scanner.nextLine();
                 String fileName = scanner.nextLine();
-                bufferedWriter.write(username + ": " + fileHandler.fileToString(fileName));
+                bufferedWriter.write(fileHandler.fileToString(address, fileName));
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
+                System.out.println("sent");
             }
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
@@ -77,18 +79,39 @@ public class NewClient {
                 }
             }
         }).start();
-    }public void listenForMessage() {
+    }
+
+    public void listenForMessage() {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String msgFromChat = "";
-
-
+                String msgFromChat;
                 while (socket.isConnected()) {
                     try {
                         msgFromChat = bufferedReader.readLine();
-                        FileHandler fileHandler = new FileHandler();
-                        fileHandler.stringToFile("sendedTest.txt" ,msgFromChat);
+
+                        StringBuilder data = new StringBuilder();
+                        String line = "";
+                        if (msgFromChat.equals("start")) {
+
+                            String fileName = bufferedReader.readLine();
+                            System.out.println(fileName);
+
+                            while (!(line = bufferedReader.readLine()).equals("end")) {
+                                data.append(line);
+                                String ls = System.getProperty("line.separator");
+                                data.append(ls);
+
+                            }
+                            FileHandler fileHandler = new FileHandler();
+                            fileHandler.stringToFile(fileName, data.toString());
+                            System.out.println("imported");
+
+                        } else {
+                            System.out.println(msgFromChat);
+                        }
+
+
                     } catch (IOException e) {
                         closeEverything(socket, bufferedReader, bufferedWriter);
                     }
@@ -96,6 +119,7 @@ public class NewClient {
             }
         }).start();
     }
+
 
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
         try {
