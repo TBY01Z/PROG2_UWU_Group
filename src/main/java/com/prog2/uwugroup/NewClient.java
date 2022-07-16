@@ -25,7 +25,7 @@ public class NewClient {
         }
     }
 
-    public void sendMessage2() {
+    public void sendFile() {
         try {
             bufferedWriter.write(username);
             bufferedWriter.newLine();
@@ -55,23 +55,6 @@ public class NewClient {
     }
 
     public void listenForMessage() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String msgFromChat;
-                while (socket.isConnected()) {
-                    try {
-                        msgFromChat = bufferedReader.readLine();
-                        System.out.println(msgFromChat);
-                    } catch (IOException e) {
-                        closeEverything(socket, bufferedReader, bufferedWriter);
-                    }
-                }
-            }
-        }).start();
-    }
-
-    public void listenForMessage2() {
         new Thread(new Runnable() {
             @Override
             public void run() {

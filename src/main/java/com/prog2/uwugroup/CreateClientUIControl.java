@@ -217,6 +217,7 @@ public class CreateClientUIControl implements Initializable {
 
     public void addFile(ActionEvent event) {
         String msg = input.getText();
+        messages.appendText(msg);
         client.sendMessage(msg);
     }
 }
