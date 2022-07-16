@@ -11,7 +11,6 @@ import javafx.util.Callback;
 
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Optional;
@@ -215,7 +214,7 @@ public class CreateClientUIControl implements Initializable {
         client.listenForMessage();
     }
 
-    public void addFile(ActionEvent event) {
+    public void sendMessage(ActionEvent event) {
         String msg = input.getText();
         messages.appendText(userName + " :\n");
         messages.appendText(msg);
