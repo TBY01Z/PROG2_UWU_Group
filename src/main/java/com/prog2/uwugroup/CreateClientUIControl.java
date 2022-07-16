@@ -19,9 +19,9 @@ import java.util.ResourceBundle;
 public class CreateClientUIControl implements Initializable {
 
     @FXML
-    private static TextArea messages;
+    private static TextArea messages = new TextArea(" ");
     @FXML
-    private static TextField input;
+    private static TextField input = new TextField();
     private final int IP_MAX_VALUE = 255;
     private final int IP_MIN_VALUE = 0;
     private boolean[] ipcheck = {false, false, false, false};
@@ -218,6 +218,7 @@ public class CreateClientUIControl implements Initializable {
         String msg = input.getText();
         messages.appendText(userName + " :\n");
         messages.appendText(msg);
+        System.out.println(msg);
         client.sendMessage(msg);
     }
 
