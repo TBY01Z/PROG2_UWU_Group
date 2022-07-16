@@ -33,8 +33,7 @@ public class CreateClientUIControl implements Initializable {
     private NewClient client;
 
     public void appendChat(String msgFromChat) {
-        System.out.println(msgFromChat);
-        messages.appendText(msgFromChat);
+        messages.appendText(msgFromChat+"\n");
     }
 
     private String setUserName(){
@@ -211,9 +210,11 @@ public class CreateClientUIControl implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        messages.setEditable(false);
         userName = setUserName();
         setIP();
         client.listenForMessage();
+
     }
 
     public void sendMessage(ActionEvent event) {
