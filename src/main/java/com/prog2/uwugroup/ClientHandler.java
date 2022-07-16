@@ -1,5 +1,7 @@
 package com.prog2.uwugroup;
 
+import javafx.beans.property.StringProperty;
+
 import java.io.*;
 import java.net.Socket;
 import java.nio.Buffer;
@@ -12,6 +14,7 @@ public class ClientHandler implements Runnable {
     private BufferedReader bufferedReader;  //read msgs
     private BufferedWriter bufferedWriter;  //write msgs
     private String clientUsername;
+
 
     public ClientHandler(Socket socket){
         try{

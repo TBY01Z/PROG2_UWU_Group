@@ -24,13 +24,11 @@ import java.util.ResourceBundle;
 
 import static com.prog2.uwugroup.ClientHandler.clientHandlers;
 
-public class NewServer extends Application implements Initializable {
+public class NewServer extends Application implements Initializable{
 
     private ServerSocket serverSocket;
     @FXML
     private Label portLabel = new Label();
-    @FXML
-    private TableView userTable = new TableView();
     @FXML
     private Label ipLabel = new Label();
     private final Integer[] arrayData = {2564, 2556, 8080, 8443, 9900, 9990};
@@ -49,11 +47,8 @@ public class NewServer extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        userTable.setItems(clientsList);
-
         try {
             ipLabel.setText(InetAddress.getLocalHost().getHostAddress());
-            System.out.println(InetAddress.getLocalHost().getHostAddress());    //TODO: remove later!
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -76,8 +71,7 @@ public class NewServer extends Application implements Initializable {
 
         selectedPort = selected;
         portLabel.setText(selectedPort.toString());
-        ServerSocket serverSocket = new ServerSocket(selectedPort); //listening for clients on 8080
-        this.serverSocket = serverSocket;
+        this.serverSocket = new ServerSocket(selectedPort);;
     }
 
     public void aboutInfo(ActionEvent event) {
@@ -92,15 +86,11 @@ public class NewServer extends Application implements Initializable {
 
     public void startServer(){
         try{
-            while(!serverSocket.isClosed()){
-                Socket socket = serverSocket.accept();
-                System.out.println("A new Client joined the party!");
-                ClientHandler clientHandler = new ClientHandler(socket);
-                Thread thread = new Thread(clientHandler);
-                thread.start();
-            }
-        }catch(IOException e){
-
+            Server server = new Server(serverSocket);
+            Thread thread0 = new Thread(server);
+            thread0.start();
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
