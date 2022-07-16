@@ -1,9 +1,11 @@
-package com.prog2.uwugroup;
+package com.prog2.uwugroup.Paket;
+
+import com.prog2.uwugroup.NetworkConnection;
 
 import java.io.Serializable;
 import java.util.function.Consumer;
 
-public class Server extends NetworkConnection{
+public class Server extends NetworkConnection {
 
     private int port;
     public Server(int port, Consumer<Serializable> onReceiveCallback) {

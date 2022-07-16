@@ -1,11 +1,19 @@
 package com.prog2.uwugroup;
 
+import javafx.application.Application;
+import javafx.scene.Parent;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
 public class NewClient {
 
+    private TextArea messages = new TextArea();
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;

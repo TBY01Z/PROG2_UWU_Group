@@ -1,18 +1,14 @@
-package com.prog2.uwugroup;
+package com.prog2.uwugroup.Paket;
 
+import com.prog2.uwugroup.NetworkConnection;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class AlternativeStartStage extends Application {
     private boolean isServer = true;   //hier wird bestimmt ob man server oder client ist

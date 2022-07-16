@@ -1,9 +1,11 @@
-package com.prog2.uwugroup;
+package com.prog2.uwugroup.Paket;
+
+import com.prog2.uwugroup.NetworkConnection;
 
 import java.io.Serializable;
 import java.util.function.Consumer;
 
-public class Client extends NetworkConnection{
+public class Client extends NetworkConnection {
 
     private String ip;
     private int port;
