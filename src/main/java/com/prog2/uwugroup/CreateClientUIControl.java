@@ -17,12 +17,11 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CreateClientUIControl implements Initializable {
+
     @FXML
-    private static Button attachment = new Button("+");
+    private static TextArea messages;
     @FXML
-    private static TextArea messages = new TextArea("");
-    @FXML
-    private static TextField input = new TextField();
+    private static TextField input;
     private final int IP_MAX_VALUE = 255;
     private final int IP_MIN_VALUE = 0;
     private boolean[] ipcheck = {false, false, false, false};
