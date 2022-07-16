@@ -14,7 +14,11 @@ public class NewServer extends Application {
     private ServerSocket serverSocket;
 
     public NewServer(ServerSocket serverSocket){
+
         this.serverSocket = serverSocket;
+    }
+    public NewServer(){
+
     }
 
     public void startServer(){
@@ -58,7 +62,7 @@ public class NewServer extends Application {
      * NOTE: This method is called on the JavaFX Application Thread.
      * </p>
      *
-     * @param primaryStage the primary stage for this application, onto which
+     * @param stage the primary stage for this application, onto which
      *                     the application scene can be set.
      *                     Applications may create other stages, if needed, but they will not be
      *                     primary stages.
@@ -66,7 +70,7 @@ public class NewServer extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(NewServer.class.getResource("StartStage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(NewServer.class.getResource("Server.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 580);
         stage.setTitle("UWU GRUPPE");
         stage.setScene(scene);

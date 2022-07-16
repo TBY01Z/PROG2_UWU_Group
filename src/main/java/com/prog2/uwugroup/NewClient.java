@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class NewClient {
 
-    private TextArea messages = new TextArea();
+  //  private TextArea messages = new TextArea();
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
