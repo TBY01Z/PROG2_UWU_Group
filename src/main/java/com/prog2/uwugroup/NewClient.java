@@ -43,22 +43,12 @@ public class NewClient {
         }
     }
 
-    public void sendMessage() {
+    public void sendMessage(String msg) {
         try {
-            FileHandler fileHandler = new FileHandler();
-            bufferedWriter.write(username); // TODO: 16.07.2022 ersten drei Zeilen von sendFile und sendMessage zusammen ausführen
-            bufferedWriter.newLine();
-            bufferedWriter.flush();
-
-            Scanner scanner = new Scanner(System.in);
-            while (socket.isConnected()) {
-                String address = scanner.nextLine();
-                String fileName = scanner.nextLine();
-                bufferedWriter.write(fileHandler.fileToString(address, fileName));
+                bufferedWriter.write(msg);
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
                 System.out.println("sent");
-            }
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
@@ -136,15 +126,4 @@ public class NewClient {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your username for the Chat: ");
-        String username = scanner.nextLine();
-        Socket socket = new Socket("localhost", 8080);
-        NewClient client = new NewClient(socket, username);
-        client.listenForMessage();
-        client.sendMessage();
-    }
-
 }

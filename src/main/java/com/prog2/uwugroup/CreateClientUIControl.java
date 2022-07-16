@@ -21,7 +21,7 @@ public class CreateClientUIControl implements Initializable {
     @FXML
     private static Button attachment = new Button("+");
     @FXML
-    private static TextArea messages = new TextArea();
+    private static TextArea messages = new TextArea("");
     @FXML
     private static TextField input = new TextField();
     private final int IP_MAX_VALUE = 255;
