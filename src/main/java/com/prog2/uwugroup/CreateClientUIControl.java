@@ -23,6 +23,7 @@ public class CreateClientUIControl implements Initializable {
     public CreateClientUIControl() {
     }
 
+    private ClientHandler clientHandler;
     @FXML
     private TextArea messages = new TextArea(" ");
     @FXML
@@ -228,6 +229,7 @@ public class CreateClientUIControl implements Initializable {
         msg = userName + " :\n" + msg + "\n\n";
         messages.appendText(msg);
         client.sendMessage(msg, this);
+        inputText.clear();
     }
 
     public void sendFile(ActionEvent event) {
@@ -240,6 +242,8 @@ public class CreateClientUIControl implements Initializable {
 
     }
 
-
+    public void closeApplication(ActionEvent event){
+        javafx.application.Platform.exit();
+    }
 
 }
