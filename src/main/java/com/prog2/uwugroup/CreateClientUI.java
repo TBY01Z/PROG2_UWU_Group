@@ -28,8 +28,7 @@ public class CreateClientUI extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(CreateClientUI.class.getResource("CreateClientUI.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 580);
-        //TODO Remove naked number
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("UWU GRUPPE");
         stage.setScene(scene);
         stage.show();

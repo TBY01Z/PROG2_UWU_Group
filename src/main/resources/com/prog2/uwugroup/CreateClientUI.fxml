@@ -9,7 +9,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Quit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close Client" />
+              <MenuItem mnemonicParsing="false" text="Close Client" onAction="#clientQuit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Client">

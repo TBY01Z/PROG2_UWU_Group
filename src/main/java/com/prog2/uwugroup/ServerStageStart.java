@@ -105,7 +105,7 @@ public class ServerStageStart extends Application implements Initializable{
         alert.setTitle("UWU Gruppe");
         alert.setHeaderText("About");
         String s = "Dies ist eine Chat-Anwendung, geschrieben von Niclas Rieckers und Mark Fischer." +
-                "Diese Anwendung wurde im Rahmen des Moduls PROG2 entwickelt";//TODO: change about
+                "Diese Anwendung wurde im Rahmen des Moduls PROG2 entwickelt";
         alert.setContentText(s);
         alert.show();
     }
@@ -181,7 +181,7 @@ public class ServerStageStart extends Application implements Initializable{
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(ServerStageStart.class.getResource("Server.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 580);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("UWU GRUPPE");
         stage.setScene(scene);
         stage.show();

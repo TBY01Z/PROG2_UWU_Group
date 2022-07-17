@@ -70,8 +70,7 @@ public class CreateClientUIControl implements Initializable {
     private void setIP() {
         Dialog<IP> dialog = new Dialog<>();
         dialog.setTitle(title);
-        dialog.setHeaderText("This is a custom dialog. Enter info and \n" +
-                "press Okay (or click title bar 'X' for cancel).");
+        dialog.setHeaderText("Hier die IP des Clients bitte eingeben:  \n\n");
         dialog.setResizable(true);
 
         Label label1 = new Label("IP: ");
@@ -262,4 +261,8 @@ public class CreateClientUIControl implements Initializable {
         javafx.application.Platform.exit();
     }
 
+    public void clientQuit(ActionEvent event) {
+        closeApplication(event);
+        clientQuit(event);
+    }
 }
