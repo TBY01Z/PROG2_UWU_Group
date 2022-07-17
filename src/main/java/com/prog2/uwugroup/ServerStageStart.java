@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -22,9 +23,17 @@ import java.util.ResourceBundle;
 
 import static com.prog2.uwugroup.ClientHandler.clientHandlers;
 
+/**
+ * KLasse ServerStageStart fuer das oeffnen und schliessen der ServerSocket.
+ * Diese Klasse ist auch fuer das Einstellen des Ports, auf dem der Server abhoeren soll
+ * zustaendig.
+ * @author Niclas Rieckers & Mark Fischer
+ */
 public class ServerStageStart extends Application implements Initializable{
 
     private ServerSocket serverSocket;
+    @FXML
+    private CheckBox startCheckBox = new CheckBox();
     @FXML
     private Label portLabel = new Label();
     @FXML
@@ -35,14 +44,24 @@ public class ServerStageStart extends Application implements Initializable{
     private ObservableList<ClientHandler> clientsList = FXCollections.observableArrayList(clientHandlers);
     private static Integer selectedPort = 8080;
 
+    /**
+     * Konstruktor fuer Klasse ServerStartStage
+     * @param serverSocket das zu initialisierende Objekt ServerSocket
+     */
     public ServerStageStart(ServerSocket serverSocket){
 
         this.serverSocket = serverSocket;
     }
+
     public ServerStageStart(){
 
     }
 
+    /**
+     * @inheritDoc
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         portLabel.setText(String.valueOf(selectedPort));
@@ -53,7 +72,12 @@ public class ServerStageStart extends Application implements Initializable{
         }
     }
 
-    public void portSelect(ActionEvent event) throws IOException {
+    /**
+     * Methode fuer die Erstellung eines Dialogfensters, mit welchem der Benutzer
+     * der Anwendung den Port, auf dem der Server laufen soll auswaehlen kann.
+     * @param event onAction Event in FXML fuer MenuItem
+     */
+    public void portSelect(ActionEvent event) {
         List<Integer> dialogData = Arrays.asList(arrayData);
 
         ChoiceDialog dialog = new ChoiceDialog(dialogData.get(0), dialogData);
@@ -73,6 +97,11 @@ public class ServerStageStart extends Application implements Initializable{
 
     }
 
+    /**
+     * Diese Methode ruft eine Infobox auf, sobald in der Menubar der Anwendung
+     * "Server Properties > About" gewaehlt wird.
+     * @param event onAction Event in FXML fuer MenuItem
+     */
     public void aboutInfo(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("UWU Gruppe");
@@ -83,17 +112,25 @@ public class ServerStageStart extends Application implements Initializable{
         alert.show();
     }
 
+    /**
+     * Methode startServer initialisiert ServerSocket mit dem gewaehlten Port
+     * (Standartwert fuer selectedPort ist 8080)
+     */
     public void startServer(){
         try{
             this.serverSocket = new ServerSocket(selectedPort);
             Server server = new Server(serverSocket);
             Thread thread0 = new Thread(server);
             thread0.start();
+            startCheckBox.setSelected(true);
         }catch(Exception e){
             e.printStackTrace();
         }
     }
 
+    /**
+     * Methode schliesst ServerSocket, falls diese nicht null ist.
+     */
     public void closeServer(){
         try{
             if(serverSocket != null){
@@ -102,8 +139,29 @@ public class ServerStageStart extends Application implements Initializable{
         } catch(IOException e){
             e.printStackTrace();
         }
+        startCheckBox.setSelected(false);
     }
 
+    /**
+     * Methode schliesst ServerSocket, solang diese nicht null ist.
+     * Im Anschluss wird die Anwendung beendet.
+     */
+    public void quitApplicationAndCloseServer(){
+        try{
+            if(serverSocket != null){
+                serverSocket.close();
+            }
+        }catch(IOException e){
+            javafx.application.Platform.exit();
+            e.printStackTrace();
+        }
+        startCheckBox.setSelected(false);
+        javafx.application.Platform.exit();
+    }
+
+    /**
+     * Main entry point im Programm.
+     */
     public static void main(String[] args) throws IOException {
         launch(args);
     }

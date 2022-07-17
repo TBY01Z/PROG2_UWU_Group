@@ -1,4 +1,4 @@
-package com.prog2.uwugroup.Paket;
+package com.prog2.uwugroup.Packet;
 
 
 import java.io.*;

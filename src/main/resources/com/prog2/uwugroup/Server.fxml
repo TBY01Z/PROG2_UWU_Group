@@ -2,33 +2,49 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prog2.uwugroup.ServerStageStart">
    <children>
       <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="800.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Quit">
+          <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#closeServer" text="Close Server" />
+                  <MenuItem mnemonicParsing="false" onAction="#quitApplicationAndCloseServer" text="Close Server &amp; Quit" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Server Info's">
+          <Menu mnemonicParsing="false" text="Server Properties">
             <items>
-              <MenuItem mnemonicParsing="false" text="Kick" />
+                  <MenuItem mnemonicParsing="false" onAction="#portSelect" text="Select Port" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#aboutInfo" text="About" />
-                  <MenuItem mnemonicParsing="false" onAction="#portSelect" text="Select Port" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="386.0" layoutY="427.0" text="Server IP:" />
-      <CheckBox layoutX="427.0" layoutY="455.0" mnemonicParsing="false" onAction="#startServer" text="Server start?" />
-      <Label fx:id="ipLabel" layoutX="457.0" layoutY="427.0" text="255.255.255.255" />
-      <Label layoutX="544.0" layoutY="427.0" text=":" />
-      <Label fx:id="portLabel" layoutX="547.0" layoutY="427.0" prefHeight="17.0" prefWidth="52.0" text="0" />
+      <Label layoutX="257.0" layoutY="240.0" text="Server IP:">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+      <CheckBox fx:id="startCheckBox" layoutX="316.0" layoutY="302.0" mnemonicParsing="false" onAction="#startServer" prefHeight="54.0" prefWidth="169.0" text="Server running">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <Label fx:id="ipLabel" layoutX="370.0" layoutY="240.0" text="255.255.255.255">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+      <Label layoutX="527.0" layoutY="240.0" text=":">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+      <Label fx:id="portLabel" layoutX="538.0" layoutY="240.0" prefHeight="17.0" prefWidth="52.0" text="0">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
    </children>
 </AnchorPane>

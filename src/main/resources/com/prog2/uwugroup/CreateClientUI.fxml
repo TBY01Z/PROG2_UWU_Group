@@ -3,7 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.TextFlow?>
 <AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prog2.uwugroup.CreateClientUIControl">
    <children>
       <MenuBar layoutX="-1.0" layoutY="2.0" prefHeight="26.0" prefWidth="800.0">
@@ -25,9 +24,9 @@
           </Menu>
         </menus>
       </MenuBar>
-     <TextField fx:id="inputText" layoutX="58.0" layoutY="418.0" onAction="#sendMessage" prefHeight="42.0" prefWidth="490.0" promptText="Start typing your message here..." />
-     <TextArea fx:id="messages" layoutX="8.0" layoutY="28.0" prefHeight="390.0" prefWidth="590.0" />
-     <Button layoutX="547.0" layoutY="418.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="42.0" prefWidth="52.0" text="Send" />
-      <Button fx:id="attachment" layoutX="25.0" layoutY="426.0" mnemonicParsing="false" text="+" onAction="#sendFile"/>
+     <TextField fx:id="inputText" layoutX="58.0" layoutY="418.0" onAction="#sendMessage" prefHeight="42.0" prefWidth="679.0" promptText="Start typing your message here..." />
+     <TextArea fx:id="messages" layoutX="8.0" layoutY="28.0" prefHeight="390.0" prefWidth="783.0" />
+     <Button layoutX="739.0" layoutY="418.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="42.0" prefWidth="52.0" text="Send" />
+      <Button fx:id="attachment" layoutX="21.0" layoutY="427.0" mnemonicParsing="false" onAction="#sendFile" text="+" />
    </children>
 </AnchorPane>

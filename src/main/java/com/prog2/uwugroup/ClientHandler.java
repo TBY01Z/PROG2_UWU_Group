@@ -1,12 +1,13 @@
 package com.prog2.uwugroup;
 
-import javafx.beans.property.StringProperty;
-
 import java.io.*;
 import java.net.Socket;
-import java.nio.Buffer;
 import java.util.ArrayList;
 
+/**
+ * ClientHandler behandelt alle sich mit dem Server verbindenden Clients.
+ * @author Niclas Rieckers & Mark Fischer
+ */
 public class ClientHandler implements Runnable {
 
     public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
@@ -15,7 +16,12 @@ public class ClientHandler implements Runnable {
     private BufferedWriter bufferedWriter;  //write msgs
     private String clientUsername;
 
-
+    /**
+     * Konstruktor fuer die Klasse ClientHandler
+     * @param socket uebergebenes Socket-Objekt, aus dem ein OutputStream gewonnen werden kann, und zu dem
+     * ein InputStream fuehren kann. Diese werden in Character Streams Output- und InputStreamWriter gewrapped,
+     * die wiederum in Buffered- Reader und Writer gewrapped werden.
+     */
     public ClientHandler(Socket socket){
         try{
             this.socket = socket;
@@ -29,6 +35,10 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * Methode run hat eine quasi-unendliche while-Schleife, die die Aufgabe hat
+     * mithilfe des BufferedReader die Socket nach neuen Nachrichten abzuhoeren.
+     */
     @Override
     public void run() {
         String messageFromClient;
@@ -44,6 +54,12 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * Methode broadcastMessage uebertraegt eine Nachricht an alle Teilnehmer des Chats, indem sie zuerst
+     * den Namen des Nutzers aus der ArrayList holt, und diesen dann gemeinsam mit der zu uebertragenden
+     * Nachricht an alle anderen Benutzer sendet.
+     * @param messageToSend die an alle Teilnehmer des Chats zu uebertragende Nachricht als String
+     */
     public void broadcastMessage(String messageToSend){
         for(ClientHandler clientHandler : clientHandlers){
             try{
@@ -54,15 +70,27 @@ public class ClientHandler implements Runnable {
                 }
             } catch(IOException e){
                 closeEverything(socket, bufferedReader, bufferedWriter);
+                break;
             }
         }
     }
 
+    /**
+     * Methode removeClientHandler entfernt Nutzer aus der Liste aller Nutzer/Chatter und
+     * benachrichtigt die anderen Nutzer des Gruppenchats ueber den Verlust eines Chatters.
+     */
     public void removeClientHandler(){
         clientHandlers.remove(this);
         broadcastMessage(clientUsername + " has left the party :(");
     }
 
+    /**
+     * "Kill switch" Methode fuer das direkte beenden von Buffered- Reader und Writer
+     * sowie das schliessen der Socket.
+     * @param socket das zu schliessende Socket-Objekt
+     * @param bufferedReader das zu schliessende BufferedReader-Objekt
+     * @param bufferedWriter das zu schliessende BufferedWriter-Objekt
+     */
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter){
         removeClientHandler();
         try{

@@ -1,14 +1,16 @@
 package com.prog2.uwugroup;
 
-import com.prog2.uwugroup.Paket.FileHandler;
+import com.prog2.uwugroup.Packet.FileHandler;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
 
+/**
+ * Klasse zur die Erstellung eines Client Objekts. Ein Client ist ein Nutzer, der sich mit dem Server
+ * fuers Chatten verbinden will.
+ * @author Niclas Rieckers & Mark Fischer
+ */
 public class Client {
-
-    //    private TextArea messages = new TextArea();
     private int messageID = 0;
     private CreateClientUIControl gui;
     private Socket socket;
@@ -16,6 +18,11 @@ public class Client {
     private BufferedWriter bufferedWriter;
     private String username;
 
+    /**
+     * Konstruktor fuer Client
+     * @param socket das zu initialisierende Objekt Socket
+     * @param username der Benutzername des Clients wird uebergeben
+     */
     public Client(Socket socket, String username) {
         try {
             this.socket = socket;
@@ -27,11 +34,16 @@ public class Client {
         }
     }
 
+    /**
+     * Methode fuer das senden von Nachrichten
+     * @param message die zu sendende Nachricht als String
+     * @param createClientUIControl GUI Controller Klasse
+     */
     public void sendMessage(String message, CreateClientUIControl createClientUIControl) {
         try {
             if (messageID == 0) {
                 gui = createClientUIControl;
-                bufferedWriter.write(username); // TODO: 16.07.2022 ersten drei Zeilen von sendFile und sendMessage zusammen ausführen
+                bufferedWriter.write(username);
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
             }
@@ -45,42 +57,35 @@ public class Client {
         }
     }
 
+    /**
+     * Methode fuer das Senden einer Datei
+     * @param file die zu sendende Datei als File-Objekt
+     */
     public void sendFile(File file) {
 
         try {
 
             FileHandler fileHandler = new FileHandler();
-            bufferedWriter.write(username); // TODO: 16.07.2022 ersten drei Zeilen von sendFile und sendMessage zusammen ausführen
+            bufferedWriter.write(username);
             bufferedWriter.newLine();
             bufferedWriter.flush();
 
-            Scanner scanner = new Scanner(System.in);
-            //while (socket.isConnected()) {
-                String address = file.getAbsolutePath();
-                String fileName = file.getName();
-                bufferedWriter.write(fileHandler.fileToString(address, fileName));
-                bufferedWriter.newLine();
-                bufferedWriter.flush();
-                System.out.println("sent");
-           // }
+            String address = file.getAbsolutePath();
+            String fileName = file.getName();
+
+            bufferedWriter.write(fileHandler.fileToString(address, fileName));
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
-
-
-
-
-//        try {
-//                bufferedWriter.write(msg);
-//                bufferedWriter.newLine();
-//                bufferedWriter.flush();
-//                System.out.println("sent");
-//        } catch (IOException e) {
-//            closeEverything(socket, bufferedReader, bufferedWriter);
-//        }
     }
 
-   
+    /**
+     * Listener Methode, die mit einem BufferedReader die Socket nach einkommenden
+     * Textnachrichten oder Dateien abhoert, und diese den Empfaenger-Client
+     * empfangen laesst.
+     */
     public void listenForMessage() {
         new Thread(new Runnable() {
             @Override
@@ -125,7 +130,13 @@ public class Client {
         }).start();
     }
 
-
+    /**
+     * "Kill switch" Methode fuer das direkte beenden von Buffered- Reader und Writer
+     * sowie das schliessen der Socket.
+     * @param socket das zu schliessende Socket-Objekt
+     * @param bufferedReader das zu schliessende BufferedReader-Objekt
+     * @param bufferedWriter das zu schliessende BufferedWriter-Objekt
+     */
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
         try {
             if (bufferedReader != null) {
