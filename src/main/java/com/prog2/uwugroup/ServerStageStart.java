@@ -120,7 +120,6 @@ public class ServerStageStart extends Application implements Initializable{
             Server server = new Server(serverSocket);
             Thread thread0 = new Thread(server);
             thread0.start();
-            startCheckBox.setSelected(true);
         }catch(Exception e){
             e.printStackTrace();
         }
