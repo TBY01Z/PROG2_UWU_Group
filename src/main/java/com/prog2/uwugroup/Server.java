@@ -4,9 +4,16 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Hier wird der Server gesettelt als Socket.
+ * @author Niclas & Mark
+ */
 public class Server implements Runnable {
     private ServerSocket serverSocket;
 
+    /**
+     * @param serverSocket Dies ist der Konstruktor der Klasse Server.
+     */
     public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }

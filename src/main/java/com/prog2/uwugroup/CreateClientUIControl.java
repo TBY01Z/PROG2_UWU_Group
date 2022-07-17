@@ -19,6 +19,10 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Dies ist die Control klasse des Clients mit der die UI Elemente des Clients angesprochen werden.
+ * @author Niclas & Mark
+ */
 public class CreateClientUIControl implements Initializable {
     public CreateClientUIControl() {
     }
@@ -35,13 +39,16 @@ public class CreateClientUIControl implements Initializable {
 
     private Client client;
 
+    /**
+     * @param msgFromChat hier wird eine MSG dem chat hinzugefuegt.
+     */
     public void appendChat(String msgFromChat) {
-
-
-
         messages.appendText(msgFromChat+"\n\n");
     }
 
+    /**
+     * @return Username es wird der eingegebene username zurueck gegeben.
+     */
     private String setUserName(){
         String value = "username";
         TextInputDialog dialog;
@@ -56,6 +63,9 @@ public class CreateClientUIControl implements Initializable {
         return value;
     }
 
+    /**
+     * Hier wird die IP des Servers gesetzt.
+     */
     private void setIP() {
         Dialog<IP> dialog = new Dialog<>();
         dialog.setTitle(title);
@@ -223,6 +233,9 @@ public class CreateClientUIControl implements Initializable {
 
     }
 
+    /**
+     * Hier wird eine MSG gesendet.
+     */
     public void sendMessage(ActionEvent event) {
         String msg = inputText.getText();
         msg = userName + " :\n" + msg + "\n\n";
@@ -230,6 +243,9 @@ public class CreateClientUIControl implements Initializable {
         client.sendMessage(msg, this);
     }
 
+    /**
+     * Hier wird eine File gesendet
+     */
     public void sendFile(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
 

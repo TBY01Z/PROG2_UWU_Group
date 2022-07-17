@@ -1,12 +1,22 @@
 package com.prog2.uwugroup;
 
+/**
+ * Diese Klasse zeigt eine IP und wird zur realiesierung einer Ip genutzt.
+ */
 public class IP {
-    private int firstOctet;
-    private int secondOctet;
-    private int thirdOctet;
-    private int fourthOctet;
-    private int port;
+    private final int firstOctet;
+    private final int secondOctet;
+    private final int thirdOctet;
+    private final int fourthOctet;
+    private final int port;
 
+    /**
+     * @param firstOctet Erstes Ocktet der IP Adresse
+     * @param secondOctet Zweites Ocktet der IP Adresse
+     * @param thirdOctet Drittes Ocktet der IP Adresse
+     * @param fourthOctet Viertes Ocktet der IP Adresse
+     * @param port Der port der Angesteuert werden soll
+     */
     public IP(int firstOctet, int secondOctet, int thirdOctet, int fourthOctet, int port) {
         this.firstOctet = firstOctet;
         this.secondOctet = secondOctet;
@@ -15,48 +25,38 @@ public class IP {
         this.port = port;
     }
 
+    /**
+     * @return Gibt das Erste Ocktet als int zurueck.
+     */
     public int firstOctet() {
         return firstOctet;
     }
 
-    public IP setFirstOctet(int firstOctet) {
-        this.firstOctet = firstOctet;
-        return this;
-    }
-
+    /**
+     * @return Gibt das Zweite Ocktet als int zurueck.
+     */
     public int secondOctet() {
         return secondOctet;
     }
 
-    public IP setSecondOctet(int secondOctet) {
-        this.secondOctet = secondOctet;
-        return this;
-    }
-
+    /**
+     * @return Gibt das Dritte Ocktet als int zurueck.
+     */
     public int thirdOctet() {
         return thirdOctet;
     }
 
-    public IP setThirdOctet(int thirdOctet) {
-        this.thirdOctet = thirdOctet;
-        return this;
-    }
-
+    /**
+     * @return Gibt das Vierte Ocktet als int zurueck.
+     */
     public int fourthOctet() {
         return fourthOctet;
     }
 
-    public IP setFourthOctet(int fourthOctet) {
-        this.fourthOctet = fourthOctet;
-        return this;
-    }
-
+    /**
+     * @return Gibt den Port als int zurueck.
+     */
     public int port() {
         return port;
-    }
-
-    public IP setPort(int port) {
-        this.port = port;
-        return this;
     }
 }

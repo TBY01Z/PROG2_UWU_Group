@@ -5,6 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Eine Klasse die die GUI unseres Clients startet
+ * @author Niclas & Mark
+ */
 public class CreateClientUI extends Application {
     /**
      * The main entry point for all JavaFX applications.
@@ -29,7 +33,12 @@ public class CreateClientUI extends Application {
         stage.setTitle("UWU GRUPPE");
         stage.setScene(scene);
         stage.show();
-    }    public static void main(String[] args) {
+    }
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
         launch(args);
     }
 

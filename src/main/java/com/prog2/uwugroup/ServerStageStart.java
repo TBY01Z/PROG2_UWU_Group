@@ -49,12 +49,10 @@ public class ServerStageStart extends Application implements Initializable{
      * @param serverSocket das zu initialisierende Objekt ServerSocket
      */
     public ServerStageStart(ServerSocket serverSocket){
-
         this.serverSocket = serverSocket;
     }
 
     public ServerStageStart(){
-
     }
 
     /**
