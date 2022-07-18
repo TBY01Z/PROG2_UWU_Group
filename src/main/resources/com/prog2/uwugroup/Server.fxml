@@ -6,7 +6,7 @@
    <children>
       <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="800.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Close">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#closeServer" text="Close Server" />
                   <MenuItem mnemonicParsing="false" onAction="#quitApplicationAndCloseServer" text="Close Server &amp; Quit" />
