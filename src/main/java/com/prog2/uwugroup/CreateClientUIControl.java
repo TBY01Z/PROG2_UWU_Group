@@ -70,7 +70,7 @@ public class CreateClientUIControl implements Initializable {
     private void setIP() {
         Dialog<IP> dialog = new Dialog<>();
         dialog.setTitle(title);
-        dialog.setHeaderText("Hier die IP des Clients bitte eingeben:  \n\n");
+        dialog.setHeaderText("Bitte IP des Servers eingeben:  \n\n");
         dialog.setResizable(true);
 
         Label label1 = new Label("IP: ");
