@@ -44,12 +44,12 @@ public class Client {
             if (messageID == 0) {
                 gui = createClientUIControl;
                 bufferedWriter.write(username);
-                bufferedWriter.newLine();
+//                bufferedWriter.newLine();
                 bufferedWriter.flush();
             }
             String messageToSend = message;
             bufferedWriter.write(messageToSend);
-            bufferedWriter.newLine();
+//            bufferedWriter.newLine();
             bufferedWriter.flush();
             messageID ++;
         } catch (IOException e) {

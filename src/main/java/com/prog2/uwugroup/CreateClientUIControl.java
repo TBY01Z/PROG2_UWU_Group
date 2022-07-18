@@ -55,7 +55,7 @@ public class CreateClientUIControl implements Initializable {
         TextInputDialog dialog;
         dialog = new TextInputDialog(value);
         dialog.setTitle(title);
-        dialog.setHeaderText("Choice your Username for the Chat.");
+        dialog.setHeaderText("Choose your Username for the Chat.");
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()) {
 
